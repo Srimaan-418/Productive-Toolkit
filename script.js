@@ -33,7 +33,7 @@ const newQuoteBtn = document.getElementById('newQuoteBtn');
 
 function generateQuote() {
   const random = Math.floor(Math.random() * quotes.length);
-  quoteText.textContent = "${quotes[random]}";
+  quoteText.textContent = `"${quotes[random]}"`;
 }
 
 newQuoteBtn.addEventListener('click', generateQuote);

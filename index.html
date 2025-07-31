@@ -2,31 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Productivity Toolkit</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
+
 </head>
 <body>
-  <header class="header hero">
-    <h1>🧠 Productivity Toolkit</h1>
-    <p class="subtitle">A clean, simple dashboard for tasks, focus, and clarity.</p>
-    <p class="tagline">No clutter. Just tools that help you do more.</p>
-    <button id="themeToggle" class="primary-btn">🌓 Toggle Theme</button>
+  <header class="header">
+    <h1>🌿 Welcome to Your Productivity Haven</h1>
+    <p class="subtitle">Focus. Reflect. Grow.</p>
+    <button id="themeToggle">🌓 Toggle Theme</button>
   </header>
 
-  <section class="main-content">
-    <h2 class="section-title">🚀 Get Started</h2>
-    <div class="card-grid">
-      <a href="task.html" class="tool-card">✅ Task Manager</a>
-      <a href="notes.html" class="tool-card">📝 Notes</a>
-      <a href="pomodoro.html" class="tool-card">🍅 Pomodoro Timer</a>
-      <a href="stopwatch.html" class="tool-card">⏱ Stopwatch</a>
-      <a href="bmi.html" class="tool-card">📏 BMI Calculator</a>
-    </div>
-  </section>
+  <main class="main-content">
+    <section class="quote-box">
+      <h2>✨ Today's Motivation</h2>
+      <p id="quoteText">Loading...</p>
+      <button id="newQuoteBtn">🔁 New Quote</button>
+    </section>
 
-  <footer class="footer">© 2025 • Productivity Toolkit • Built with ☕ & ❤️</footer>
+    <section class="card-grid">
+      <a href="task.html" class="tool-card">📝 Tasks</a>
+      <a href="stopwatch.html" class="tool-card">⏱️ Stopwatch</a>
+      <a href="bmi.html" class="tool-card">💪 BMI Calculator</a>
+      <a href="notes.html" class="tool-card">📓 Notes</a>
+      <a href="pomodoro.html" class="tool-card">🍅 Pomodoro Timer</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Made with ❤️ for your daily boost</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

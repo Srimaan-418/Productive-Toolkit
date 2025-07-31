@@ -423,3 +423,11 @@ body.dark {
   background: #5a3d32;
   transform: scale(1.05);
 }
+:root {
+  --bg: #f9f7f1;
+  --text: #2d2d2d;
+  --card-bg: #ffffffdd;
+  --accent: #7d5a50;
+  --shadow: rgba(125, 90, 80, 0.15);
+  --shadow-hover: rgba(125, 90, 80, 0.25);
+}

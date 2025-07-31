@@ -631,3 +631,47 @@ body {
 .feature-card {
     background: var(--card-gradient); /* This will now use the updated opaque card gradient */
 }
+/* --- FIX: CONTENT CONTAINERS COVERING ENTIRE PAGE (Paste at the very end of your style.css) --- */
+
+/* Make the homepage stretch to full width */
+.homepage {
+    max-width: none; /* Remove max-width constraint */
+    margin: 0; /* Remove auto margins for full width */
+    padding: 100px 0 40px; /* Adjust padding if needed for full width */
+    background: rgba(var(--bg-primary-rgb), var(--homepage-bg-opacity)); /* Ensure background is solid */
+    /* Remove text-align: center if it's there and you want content left-aligned */
+}
+
+/* Make the dashboard stretch to full width */
+.dashboard {
+    max-width: none; /* Remove max-width constraint */
+    margin: 0; /* Remove auto margins for full width */
+    padding: 140px 0 40px; /* Adjust padding if needed for full width */
+    background: rgba(var(--bg-primary-rgb), var(--homepage-bg-opacity)); /* Ensure background is solid */
+    /* Remove text-align: center if it's there and you want content left-aligned */
+}
+
+/* Make the feature-page-container stretch to full width (if applicable) */
+.feature-page-container {
+    max-width: none; /* Remove max-width constraint */
+    margin: 0; /* Remove auto margins for full width */
+    padding: 120px 0 40px; /* Adjust padding if needed for full width */
+    background: rgba(var(--bg-primary-rgb), var(--homepage-bg-opacity)); /* Ensure background is solid */
+    /* Remove text-align: center if it's there and you want content left-aligned */
+}
+
+/* Adjust padding for inner content if the overall container is now full width,
+   to maintain content spacing from the edges of the screen. */
+.homepage .hero,
+.dashboard .feature-grid,
+.feature-page-container .feature-header,
+.feature-page-container .widget {
+    padding: 0 40px; /* Apply horizontal padding to inner content */
+    max-width: 1400px; /* Optionally re-add max-width to inner content for readability */
+    margin: 0 auto; /* Center inner content */
+}
+
+/* Ensure the nav-container padding is still correct for inner nav content */
+.nav-container {
+    padding: 0 40px;
+}

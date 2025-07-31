@@ -28,12 +28,10 @@ const quotes = [
   "It always seems impossible until it's done."
 ];
 
-const quoteText = document.getElementById('quoteText');
-const newQuoteBtn = document.getElementById('newQuoteBtn');
-
 function generateQuote() {
+  const quoteText = document.getElementById('quoteText');
   const random = Math.floor(Math.random() * quotes.length);
   quoteText.textContent = `"${quotes[random]}"`;
 }
 
-newQuoteBtn.addEventListener('click', generateQuote);
+document.getElementById('newQuoteBtn').addEventListener('click', generateQuote);

@@ -358,3 +358,28 @@ body.dark {
   animation: taskOut 0.3s ease forwards;
   overflow: hidden;
 }
+.note-card {
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 14px;
+  box-shadow: 0 6px 15px var(--shadow);
+  position: relative;
+  font-size: 1.1rem;
+  color: var(--text);
+  word-wrap: break-word;
+}
+
+.note-card .delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.note-card .delete-btn:hover {
+  color: #f44336;
+}

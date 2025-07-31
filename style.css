@@ -485,3 +485,75 @@ body {
         align-items: stretch;
     }
 }
+/* --- CSS-GENERATED BACKGROUND (6 Animated Gradient Circles) --- */
+
+/* Paste this block at the very end of your style.css */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+    /* Define 6 distinct radial gradients for the background image */
+    background-image:
+        radial-gradient(circle, #A7DBF5 0%, #FF69B4 70%), /* 1: Blue to Pink */
+        radial-gradient(circle, #FF69B4 0%, #A7DBF5 70%), /* 2: Pink to Blue */
+        radial-gradient(circle, #6EE7B7 0%, #FDE68A 70%), /* 3: Green to Yellow */
+        radial-gradient(circle, #FDE68A 0%, #6EE7B7 70%), /* 4: Yellow to Green */
+        radial-gradient(circle, #DDA0DD 0%, #40E0D0 70%), /* 5: Plum to Turquoise */
+        radial-gradient(circle, #8A2BE2 0%, #5F9EA0 70%); /* 6: Blue Violet to Cadet Blue */
+    
+    /* Set individual sizes for each circle layer (order matches background-image) */
+    background-size: 180px 180px, /* Size for Circle 1 */
+                     220px 220px, /* Size for Circle 2 */
+                     150px 150px, /* Size for Circle 3 */
+                     200px 200px, /* Size for Circle 4 */
+                     190px 190px, /* Size for Circle 5 */
+                     160px 160px; /* Size for Circle 6 */
+
+    background-repeat: no-repeat; /* Crucial: Ensures circles do NOT repeat */
+    
+    /* Set initial random-like positions for each circle. Adjust these to change starting points. */
+    background-position: 10% 10%, /* Position for Circle 1 */
+                         70% 30%, /* Position for Circle 2 */
+                         25% 80%, /* Position for Circle 3 */
+                         85% 60%, /* Position for Circle 4 */
+                         50% 20%, /* Position for Circle 5 */
+                         5% 55%;  /* Position for Circle 6 */
+    
+    background-attachment: fixed; /* Keeps circles fixed relative to viewport */
+
+    /* Apply the animation to move all 6 circles simultaneously. Increased duration for smoother movement. */
+    animation: animateIndividualCircles 40s linear infinite; /* Adjusted duration from 30s to 40s */
+    opacity: 1; /* Keep fully visible */
+
+    /* Fallback background color for empty space if circles aren't visible */
+    background-color: #1a1d24; /* A dark grey fallback */
+}
+
+/* NEW KEYFRAMES FOR INDIVIDUAL CIRCLE MOVEMENT (Updated for 6 circles) */
+/* Paste this block immediately after the .bg-animation rule above. */
+@keyframes animateIndividualCircles {
+    0% {
+        /* Start positions */
+        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%, 50% 20%, 5% 55%;
+    }
+    25% {
+        /* Shift positions for the first quarter of the animation */
+        background-position: 15% 5%, 65% 35%, 20% 75%, 90% 55%, 55% 15%, 10% 50%;
+    }
+    50% {
+        /* Continue movement for the middle of the animation */
+        background-position: 5% 20%, 75% 25%, 30% 70%, 80% 65%, 45% 25%, 0% 60%;
+    }
+    75% {
+        /* Return towards original positions */
+        background-position: 12% 15%, 68% 28%, 22% 82%, 88% 58%, 52% 18%, 8% 52%;
+    }
+    100% {
+        /* Back to start for a seamless loop */
+        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%, 50% 20%, 5% 55%;
+    }
+}

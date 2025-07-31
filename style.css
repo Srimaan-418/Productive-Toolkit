@@ -1,11 +1,12 @@
 /* ======================================================= */
-/* ===      FINAL STYLE.CSS WITH 4 ANIMATED GRADIENT CIRCLES   === */
-/* ===      FULLY VISIBLE BEHIND TRANSLUCENT CONTENT & TILES   === */
+/* ===      FINAL CONSOLIDATED STYLE.CSS WITH THEMED GRADIENT CIRCLES   === */
+/* ===      AND DISTINCT DARK/LIGHT MODES (Fixed)                       === */
 /* ======================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap'); /* You can remove this line if you're not using Montserrat anywhere else */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap'); /* Used for all text */
+/* Montserrat is no longer strictly needed if Quicksand is global and no other elements use Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap'); /* Global font */
 
 /* Basic Reset */
 * {
@@ -16,53 +17,56 @@
 
 /* --- COLOR PALETTES & FONT --- */
 
-/* Dark Theme: "Warm Dusk" */
+/* Dark Theme: "Warm Dusk" - All variables defined in one place */
 :root {
     /* RGB components for semi-transparency of content blocks */
     --bg-primary-rgb: 28, 25, 23; /* Original dark primary color */
     --bg-secondary-rgb: 41, 37, 36; /* Original dark secondary color */
     --surface-rgb: 245, 233, 226; /* Original surface color */
 
-    /* Text Colors - All Rose Red */
-    --text-primary: #E52B55;
-    --text-secondary: #FF8F9B;
-    --text-muted: #FFB3BB;
+    /* Text Colors - Neutral Greys */
+    --text-primary: #F0F2F5;    /* Very light grey for main text */
+    --text-secondary: #B0B7BF;  /* Lighter grey for secondary text */
+    --text-muted: #8F97A0;      /* Medium grey for subtle text */
 
-    /* Accent Colors - Rose Red */
-    --accent: #E52B50;
-    --accent-secondary: #FF6680;
+    /* Accent Colors - Cool Tones (for buttons, etc.) */
+    --accent: #5eead4;           /* Bright Cyan */
+    --accent-secondary: #a78bfa; /* Soft Purple */
     --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
 
-    /* CARD GRADIENT - NOW VERY TRANSPARENT */
+    /* Card Gradient - NOW VERY TRANSPARENT */
     --card-gradient: linear-gradient(135deg, rgba(58, 51, 49, 0.08), rgba(47, 42, 40, 0.08)); /* Very low opacity */
 
     /* Text Shadow Color */
-    --text-shadow-color: rgba(0, 0, 0, 0.7);
+    --text-shadow-color: rgba(0, 0, 0, 0.7); /* Dark shadow for contrast */
 
     /* Shadows */
     --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
     --nav-bg: rgba(41, 37, 36, 0.9);
+
+    /* Fallback background color for empty space if circles aren't visible */
+    --background-fallback-color: #1a1d24; /* A dark grey fallback */
 }
 
-/* Light Theme: "Daybreak" */
+/* Light Theme: "Daybreak" - All variables defined in one place */
 [data-theme="light"] {
     /* RGB components for semi-transparency of content blocks */
     --bg-primary-rgb: 255, 248, 245;
     --bg-secondary-rgb: 255, 255, 255;
     --surface-rgb: 77, 64, 58;
 
-    /* Text Colors - All Rose Red */
-    --text-primary: #9B0032;
-    --text-secondary: #C23A63;
-    --text-muted: #E06C92;
+    /* Text Colors - Neutral Greys */
+    --text-primary: #2D3748;
+    --text-secondary: #4A5568;
+    --text-muted: #718096;
 
-    /* Accent Colors - Rose Red */
-    --accent: #E52B50;
-    --accent-secondary: #FF6680;
+    /* Accent Colors - Cool Tones */
+    --accent: #3b82f6;
+    --accent-secondary: #ec4899;
     --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
 
-    /* CARD GRADIENT - NOW VERY TRANSPARENT */
-    --card-gradient: linear-gradient(135deg, rgba(247, 240, 235, 0.08), rgba(255, 224, 194, 0.08)); /* Very low opacity */
+    /* Card Gradient - NOW VERY TRANSPARENT */
+    --card-gradient: linear-gradient(135deg, rgba(247, 240, 235, 0.08), rgba(255, 224, 194, 0.08));
 
     /* Text Shadow Color */
     --text-shadow-color: rgba(77, 64, 58, 0.3);
@@ -70,6 +74,9 @@
     /* Shadows */
     --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     --nav-bg: rgba(255, 248, 245, 0.9);
+
+    /* Fallback background color for empty space if circles aren't visible */
+    --background-fallback-color: #fff8f5; /* Light fallback */
 }
 
 /* Base Body Styles - Applies Quicksand to everything */
@@ -83,7 +90,7 @@ body {
     position: relative;
 }
 
-/* --- ANIMATED BACKGROUND: 4 ANIMATED GRADIENT CIRCLES (Non-Repeating) --- */
+/* --- ANIMATED BACKGROUND: 6 ANIMATED GRADIENT CIRCLES (Non-Repeating) --- */
 .bg-animation {
     position: fixed;
     top: 0;
@@ -92,58 +99,64 @@ body {
     height: 100%;
     z-index: -1;
 
-    /* Define 4 distinct radial gradients for the background image */
+    /* Define 6 distinct radial gradients for the background image */
     background-image:
-        radial-gradient(circle, #A7DBF5 0%, #FF69B4 70%), /* Circle 1: Blue to Pink */
-        radial-gradient(circle, #FF69B4 0%, #A7DBF5 70%), /* Circle 2: Pink to Blue */
-        radial-gradient(circle, #6EE7B7 0%, #FDE68A 70%), /* Circle 3: Green to Yellow */
-        radial-gradient(circle, #FDE68A 0%, #6EE7B7 70%); /* Circle 4: Yellow to Green */
-
+        radial-gradient(circle, #A7DBF5 0%, #FF69B4 70%), /* 1: Blue to Pink */
+        radial-gradient(circle, #FF69B4 0%, #A7DBF5 70%), /* 2: Pink to Blue */
+        radial-gradient(circle, #6EE7B7 0%, #FDE68A 70%), /* 3: Green to Yellow */
+        radial-gradient(circle, #FDE68A 0%, #6EE7B7 70%), /* 4: Yellow to Green */
+        radial-gradient(circle, #DDA0DD 0%, #40E0D0 70%), /* 5: Plum to Turquoise */
+        radial-gradient(circle, #8A2BE2 0%, #5F9EA0 70%); /* 6: Blue Violet to Cadet Blue */
+    
     /* Set individual sizes for each circle layer (order matches background-image) */
     background-size: 180px 180px, /* Size for Circle 1 */
                      220px 220px, /* Size for Circle 2 */
                      150px 150px, /* Size for Circle 3 */
-                     200px 200px; /* Size for Circle 4 */
-    
+                     200px 200px, /* Size for Circle 4 */
+                     190px 190px, /* Size for Circle 5 */
+                     160px 160px; /* Size for Circle 6 */
+
     background-repeat: no-repeat; /* Crucial: Ensures circles do NOT repeat */
     
     /* Set initial random-like positions for each circle. Adjust these to change starting points. */
     background-position: 10% 10%, /* Position for Circle 1 */
                          70% 30%, /* Position for Circle 2 */
                          25% 80%, /* Position for Circle 3 */
-                         85% 60%; /* Position for Circle 4 */
+                         85% 60%, /* Position for Circle 4 */
+                         50% 20%, /* Position for Circle 5 */
+                         5% 55%;  /* Position for Circle 6 */
     
     background-attachment: fixed; /* Keeps circles fixed relative to viewport */
 
-    /* Apply the animation to move all 4 circles simultaneously */
-    animation: animateIndividualCircles 30s linear infinite; /* Adjust duration for speed */
+    /* Apply the animation to move all 6 circles simultaneously. Increased duration for smoother movement. */
+    animation: animateIndividualCircles 40s linear infinite;
     opacity: 1; /* Keep fully visible */
 
     /* Fallback background color for empty space if circles aren't visible */
-    background-color: #1a1d24; /* A dark grey fallback */
+    background-color: var(--background-fallback-color); /* Now uses theme-specific fallback */
 }
 
 /* KEYFRAMES FOR INDIVIDUAL CIRCLE MOVEMENT */
 @keyframes animateIndividualCircles {
     0% {
-        /* Start positions (same as initial background-position) */
-        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%;
+        /* Start positions */
+        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%, 50% 20%, 5% 55%;
     }
     25% {
-        /* Move circles slightly for the first quarter of the animation */
-        background-position: 15% 5%, 65% 35%, 20% 75%, 90% 55%;
+        /* Shift positions for the first quarter of the animation */
+        background-position: 15% 5%, 65% 35%, 20% 75%, 90% 55%, 55% 15%, 10% 50%;
     }
     50% {
         /* Continue movement for the middle of the animation */
-        background-position: 5% 20%, 75% 25%, 30% 70%, 80% 65%;
+        background-position: 5% 20%, 75% 25%, 30% 70%, 80% 65%, 45% 25%, 0% 60%;
     }
     75% {
         /* Return towards original positions */
-        background-position: 12% 15%, 68% 28%, 22% 82%, 88% 58%;
+        background-position: 12% 15%, 68% 28%, 22% 82%, 88% 58%, 52% 18%, 8% 52%;
     }
     100% {
-        /* Back to start for seamless loop */
-        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%;
+        /* Back to start for a seamless loop */
+        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%, 50% 20%, 5% 55%;
     }
 }
 
@@ -181,6 +194,7 @@ body {
     font-size: 24px;
     font-weight: 800;
     /* Removed background-clip:text/transparent to make it solid color */
+    color: var(--text-primary) !important; /* Apply primary text color */
 }
 
 .nav-controls {
@@ -237,10 +251,11 @@ body {
 
 .hero h1 {
     font-size: clamp(3rem, 6vw, 6rem);
-    font-weight: 900;
+    font-weight: 900; /* Preserve bold for title */
     line-height: 1.1;
     margin-bottom: 24px;
     /* Removed background-clip:text/transparent to make it solid color */
+    color: var(--text-primary) !important; /* Apply primary text color */
     text-shadow: 2px 2px 6px var(--text-shadow-color);
 }
 
@@ -275,7 +290,7 @@ body {
 
 .btn-primary {
     background: var(--gradient-accent);
-    color: white !important;
+    color: white !important; /* Kept white for contrast */
     box-shadow: var(--shadow);
 }
 
@@ -286,7 +301,7 @@ body {
 
 .btn-secondary {
     background: rgba(var(--surface-rgb), 0.2);
-    color: var(--text-primary) !important;
+    color: var(--text-primary) !important; /* Forced primary text color */
     border: 1px solid var(--border);
 }
 
@@ -333,7 +348,7 @@ body {
 .stat-number {
     font-size: 32px;
     font-weight: 800;
-    color: var(--accent) !important;
+    color: var(--accent) !important; /* Forced accent color */
     margin-bottom: 4px;
     text-shadow: 1px 1px 3px var(--text-shadow-color);
 }
@@ -483,77 +498,5 @@ body {
     .hero-actions {
         flex-direction: column;
         align-items: stretch;
-    }
-}
-/* --- CSS-GENERATED BACKGROUND (6 Animated Gradient Circles) --- */
-
-/* Paste this block at the very end of your style.css */
-.bg-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-
-    /* Define 6 distinct radial gradients for the background image */
-    background-image:
-        radial-gradient(circle, #A7DBF5 0%, #FF69B4 70%), /* 1: Blue to Pink */
-        radial-gradient(circle, #FF69B4 0%, #A7DBF5 70%), /* 2: Pink to Blue */
-        radial-gradient(circle, #6EE7B7 0%, #FDE68A 70%), /* 3: Green to Yellow */
-        radial-gradient(circle, #FDE68A 0%, #6EE7B7 70%), /* 4: Yellow to Green */
-        radial-gradient(circle, #DDA0DD 0%, #40E0D0 70%), /* 5: Plum to Turquoise */
-        radial-gradient(circle, #8A2BE2 0%, #5F9EA0 70%); /* 6: Blue Violet to Cadet Blue */
-    
-    /* Set individual sizes for each circle layer (order matches background-image) */
-    background-size: 180px 180px, /* Size for Circle 1 */
-                     220px 220px, /* Size for Circle 2 */
-                     150px 150px, /* Size for Circle 3 */
-                     200px 200px, /* Size for Circle 4 */
-                     190px 190px, /* Size for Circle 5 */
-                     160px 160px; /* Size for Circle 6 */
-
-    background-repeat: no-repeat; /* Crucial: Ensures circles do NOT repeat */
-    
-    /* Set initial random-like positions for each circle. Adjust these to change starting points. */
-    background-position: 10% 10%, /* Position for Circle 1 */
-                         70% 30%, /* Position for Circle 2 */
-                         25% 80%, /* Position for Circle 3 */
-                         85% 60%, /* Position for Circle 4 */
-                         50% 20%, /* Position for Circle 5 */
-                         5% 55%;  /* Position for Circle 6 */
-    
-    background-attachment: fixed; /* Keeps circles fixed relative to viewport */
-
-    /* Apply the animation to move all 6 circles simultaneously. Increased duration for smoother movement. */
-    animation: animateIndividualCircles 40s linear infinite; /* Adjusted duration from 30s to 40s */
-    opacity: 1; /* Keep fully visible */
-
-    /* Fallback background color for empty space if circles aren't visible */
-    background-color: #1a1d24; /* A dark grey fallback */
-}
-
-/* NEW KEYFRAMES FOR INDIVIDUAL CIRCLE MOVEMENT (Updated for 6 circles) */
-/* Paste this block immediately after the .bg-animation rule above. */
-@keyframes animateIndividualCircles {
-    0% {
-        /* Start positions */
-        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%, 50% 20%, 5% 55%;
-    }
-    25% {
-        /* Shift positions for the first quarter of the animation */
-        background-position: 15% 5%, 65% 35%, 20% 75%, 90% 55%, 55% 15%, 10% 50%;
-    }
-    50% {
-        /* Continue movement for the middle of the animation */
-        background-position: 5% 20%, 75% 25%, 30% 70%, 80% 65%, 45% 25%, 0% 60%;
-    }
-    75% {
-        /* Return towards original positions */
-        background-position: 12% 15%, 68% 28%, 22% 82%, 88% 58%, 52% 18%, 8% 52%;
-    }
-    100% {
-        /* Back to start for a seamless loop */
-        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%, 50% 20%, 5% 55%;
     }
 }

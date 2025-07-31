@@ -326,3 +326,35 @@ body.dark {
   border-color: var(--accent);
   box-shadow: 0 0 12px var(--accent);
 }
+/* Animation: task fade-slide in */
+@keyframes taskIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-item {
+  animation: taskIn 0.3s ease forwards;
+  opacity: 0; /* animate in from 0 */
+}
+
+/* Animation: task delete shrink */
+@keyframes taskOut {
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.task-item.remove {
+  animation: taskOut 0.3s ease forwards;
+  overflow: hidden;
+}

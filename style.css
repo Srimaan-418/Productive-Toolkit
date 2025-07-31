@@ -303,3 +303,26 @@ body.dark {
 .task-list button.delete-btn:hover {
   color: #ef4444;
 }
+#taskInput {
+  padding: 1rem;
+  margin: 1rem 0;
+  width: 80%;
+  border-radius: 16px;
+  border: 1.5px solid var(--accent);
+  font-size: 1.1rem;
+  background: var(--card-bg);
+  color: var(--text);
+  box-shadow: 0 6px 15px var(--shadow);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#taskInput::placeholder {
+  color: var(--text);
+  opacity: 0.6;
+}
+
+#taskInput:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+}

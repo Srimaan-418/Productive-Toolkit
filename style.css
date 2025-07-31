@@ -1,15 +1,10 @@
 /* ======================================================= */
-/* ===      FINAL STYLE.CSS WITH THEME-AWARE GRADIENT  === */
-/* ===      AND CLEANER TEXT IN LIGHT MODE             === */
+/* ===      FINAL STYLE.CSS WITH 4 ANIMATED GRADIENT CIRCLES   === */
 /* ======================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap'); /* You can keep this if you still use Montserrat anywhere, otherwise you can remove it to optimize */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap'); /* Add this line */
-
-/* ... rest of your CSS starts here (e.g., * { margin: 0; ... }) ... */
-
-/* ... rest of your CSS starts here (e.g., * { margin: 0; ... }) ... */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap'); /* You can remove this line if you're not using Montserrat anywhere else */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap'); /* Used for all text */
 
 /* Basic Reset */
 * {
@@ -22,57 +17,64 @@
 
 /* Dark Theme: "Warm Dusk" */
 :root {
+    /* RGB components for semi-transparency of content blocks */
     --bg-primary-rgb: 28, 25, 23;
     --bg-secondary-rgb: 41, 37, 36;
     --surface-rgb: 245, 233, 226;
 
-    --accent: #ff7e5f;
-    --accent-secondary: #feb47b;
-    --text-primary: #f5e9e2;
-    --text-secondary: #c7b8b0;
-    --text-muted: #8f8078;
+    /* Text Colors - All Rose Red */
+    --text-primary: #E52B55;    /* Slightly brighter rose red for main text */
+    --text-secondary: #FF8F9B;  /* Lighter rose red for secondary text */
+    --text-muted: #FFB3BB;      /* Muted rose red for subtle text */
 
-    --border: rgba(245, 233, 226, 0.2);
-    --nav-bg: rgba(41, 37, 36, 0.9);
-    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    /* Accent Colors - Rose Red (for items like buttons/titles that use them) */
+    --accent: #E52B50;           /* Main Rose Red */
+    --accent-secondary: #FF6680; /* Brighter Rose Red for gradient ends */
     --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
 
+    /* Card Gradient (e.g., for feature cards) */
     --card-gradient: linear-gradient(135deg, rgba(58, 51, 49, 0.9), rgba(47, 42, 40, 0.9));
 
-    /* Dynamic animated background gradient for Dark Theme */
-    --animated-bg-gradient: linear-gradient(-45deg, #FF6B6B, #FFD166, #06D6A0, #118AB2, #073B4C);
-    --text-shadow-color: rgba(0, 0, 0, 0.8); /* Dark shadow for dark theme */
+    /* Text Shadow Color */
+    --text-shadow-color: rgba(0, 0, 0, 0.7); /* Dark shadow for contrast */
+
+    /* Shadows */
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    --nav-bg: rgba(41, 37, 36, 0.9);
 }
 
 /* Light Theme: "Daybreak" */
 [data-theme="light"] {
+    /* RGB components for semi-transparency of content blocks */
     --bg-primary-rgb: 255, 248, 245;
     --bg-secondary-rgb: 255, 255, 255;
     --surface-rgb: 77, 64, 58;
 
-    --accent: #f96d54;
-    --accent-secondary: #ffae96;
-    --text-primary: #4d403a;
-    --text-secondary: #7a6a62;
-    --text-muted: #9e8a80;
+    /* Text Colors - All Rose Red */
+    --text-primary: #9B0032;    /* Darker rose red for main text on light background */
+    --text-secondary: #C23A63;  /* Medium rose red for secondary text */
+    --text-muted: #E06C92;      /* Lighter rose red for subtle text */
 
-    --border: rgba(77, 64, 58, 0.15);
-    --nav-bg: rgba(255, 248, 245, 0.9);
-    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-
+    /* Accent Colors - Rose Red */
+    --accent: #E52B50;           /* Main Rose Red */
+    --accent-secondary: #FF6680; /* Brighter Rose Red for gradient ends */
     --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
 
+    /* Card Gradient (e.g., for feature cards) */
     --card-gradient: linear-gradient(135deg, rgba(247, 240, 235, 0.9), rgba(255, 224, 194, 0.9));
 
-    /* Dynamic animated background gradient for Light Theme (NOT WHITE, but light & vibrant) */
-    --animated-bg-gradient: linear-gradient(-45deg, #8ecae6, #219ebc, #c1e7e4, #ffb703, #fb8500); /* Blues, greens, oranges */
+    /* Text Shadow Color */
     --text-shadow-color: rgba(77, 64, 58, 0.3); /* Lighter, subtle shadow for light theme */
+
+    /* Shadows */
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --nav-bg: rgba(255, 248, 245, 0.9);
 }
 
-/* Base Body Styles */
+/* Base Body Styles - Applies Quicksand to everything */
 body {
-    font-family: 'Nunito Sans', sans-serif;
-    background: none;
+    font-family: 'Quicksand', sans-serif; /* Set Quicksand as the global font */
+    background: none; /* No default body background, let bg-animation handle it */
     color: var(--text-primary);
     min-height: 100vh;
     overflow-x: hidden;
@@ -80,7 +82,7 @@ body {
     position: relative;
 }
 
-/* --- ANIMATED GRADIENT BACKGROUND (FULL PAGE - VISIBLE AF) --- */
+/* --- ANIMATED BACKGROUND: 4 ANIMATED GRADIENT CIRCLES (Non-Repeating) --- */
 .bg-animation {
     position: fixed;
     top: 0;
@@ -88,26 +90,71 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-    /* NOW USES THEME-DEFINED GRADIENT */
-    background: var(--animated-bg-gradient);
-    background-size: 400% 400%;
-    animation: animateGradient 20s ease infinite;
-    opacity: 1; /* Still fully visible! */
+
+    /* Define 4 distinct radial gradients for the background image */
+    background-image:
+        /* Circle 1: Blue to Pink */
+        radial-gradient(circle, #A7DBF5 0%, #FF69B4 70%),
+        /* Circle 2: Pink to Blue */
+        radial-gradient(circle, #FF69B4 0%, #A7DBF5 70%),
+        /* Circle 3: Green to Yellow */
+        radial-gradient(circle, #6EE7B7 0%, #FDE68A 70%),
+        /* Circle 4: Yellow to Green */
+        radial-gradient(circle, #FDE68A 0%, #6EE7B7 70%);
+
+    /* Set individual sizes for each circle layer (order matches background-image) */
+    background-size: 180px 180px, /* Size for Circle 1 */
+                     220px 220px, /* Size for Circle 2 */
+                     150px 150px, /* Size for Circle 3 */
+                     200px 200px; /* Size for Circle 4 */
+    
+    background-repeat: no-repeat; /* Crucial: Ensures circles do NOT repeat */
+    
+    /* Set initial random-like positions for each circle layer. Adjust these to change starting points. */
+    background-position: 10% 10%, /* Position for Circle 1 */
+                         70% 30%, /* Position for Circle 2 */
+                         25% 80%, /* Position for Circle 3 */
+                         85% 60%; /* Position for Circle 4 */
+    
+    background-attachment: fixed; /* Keeps circles fixed relative to viewport */
+
+    /* Apply the animation to move all 4 circles simultaneously */
+    animation: animateIndividualCircles 30s linear infinite; /* Adjust duration for speed */
+    opacity: 1; /* Keep fully visible */
+
+    /* Fallback background color for empty space if circles aren't visible */
+    background-color: #1a1d24; /* A dark grey fallback */
 }
 
-/* Keyframes for the background animation */
-@keyframes animateGradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* NEW KEYFRAMES FOR INDIVIDUAL CIRCLE MOVEMENT */
+@keyframes animateIndividualCircles {
+    0% {
+        /* Start positions (same as initial background-position) */
+        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%;
+    }
+    25% {
+        /* Move circles slightly for the first quarter of the animation */
+        background-position: 15% 5%, 65% 35%, 20% 75%, 90% 55%;
+    }
+    50% {
+        /* Continue movement for the middle of the animation */
+        background-position: 5% 20%, 75% 25%, 30% 70%, 80% 65%;
+    }
+    75% {
+        /* Return towards original positions */
+        background-position: 12% 15%, 68% 28%, 22% 82%, 88% 58%;
+    }
+    100% {
+        /* Back to start for seamless loop */
+        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%;
+    }
 }
 
-/* Keyframes for a general fade-in animation */
+/* Keyframes for a general fade-in animation (used for dashboard) */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
-
 
 /* --- NAVIGATION --- */
 .nav {
@@ -136,10 +183,7 @@ body {
 .logo {
     font-size: 24px;
     font-weight: 800;
-    background: var(--gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    /* Removed background-clip:text/transparent to make it solid color */
 }
 
 .nav-controls {
@@ -198,11 +242,7 @@ body {
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 24px;
-    background: var(--gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    /* Dynamic text shadow color */
+    /* Removed background-clip:text/transparent to make it solid color */
     text-shadow: 2px 2px 6px var(--text-shadow-color);
 }
 
@@ -237,7 +277,7 @@ body {
 
 .btn-primary {
     background: var(--gradient-accent);
-    color: white;
+    color: white !important; /* Kept white for contrast */
     box-shadow: var(--shadow);
 }
 
@@ -248,7 +288,7 @@ body {
 
 .btn-secondary {
     background: rgba(var(--surface-rgb), 0.2);
-    color: var(--text-primary);
+    color: var(--text-primary) !important; /* Forced rose red */
     border: 1px solid var(--border);
 }
 
@@ -294,7 +334,7 @@ body {
 .stat-number {
     font-size: 32px;
     font-weight: 800;
-    color: var(--accent);
+    color: var(--accent) !important; /* Forced rose red */
     margin-bottom: 4px;
     text-shadow: 1px 1px 3px var(--text-shadow-color);
 }
@@ -440,282 +480,5 @@ body {
     .hero-actions {
         flex-direction: column;
         align-items: stretch;
-    }
-}/* --- OVERRIDE FOR DARK THEME CONTENT BACKGROUND COLOR (Paste at the very end of your style.css) --- */
-
-/* This block changes the main content area background color for the dark theme */
-body[data-theme="dark"] .homepage,
-body[data-theme="dark"] .dashboard,
-body[data-theme="dark"] .feature-page-container {
-    /* New background color: A very dark, desaturated slate blue (85% opaque) */
-    background: rgba(32, 42, 58, 0.85); 
-}
-
-/* If you also want to change the background color of smaller sections 
-   like 'continue-section' and 'widget' in the dark theme, uncomment 
-   and adjust the following block: */
-/*
-body[data-theme="dark"] .continue-section,
-body[data-theme="dark"] .widget {
-    background: rgba(32, 42, 58, 0.2); 
-    border-color: rgba(255, 255, 255, 0.2);
-}
-*/
-/* --- OVERRIDE FOR DARK THEME TEXT COLORS TO ORANGE (Paste at the very end of your style.css) --- */
-
-/* This block changes the primary, secondary, and muted text colors for the dark theme to shades of orange. */
-:root { /* This targets the default/dark theme variables */
-    --text-primary: #FF8C00;    /* Dark Orange for main text (e.g., body text, feature titles) */
-    --text-secondary: #FFB366;  /* Softer orange for secondary text (e.g., descriptions) */
-    --text-muted: #FFCC99;      /* Lighter peach-orange for muted text (e.g., small labels) */
-
-    /* IMPORTANT NOTE ON READABILITY:
-       Using vibrant colors for large blocks of text can sometimes impact readability,
-       especially with an animated background. You might need to adjust the opacity
-       of your content blocks (e.g., in .homepage, .dashboard) or the intensity
-       of text shadows further to ensure good contrast. */
-
-    /* Optional: Your logo and hero title already use an orange gradient from --gradient-accent.
-       If you want to adjust *those specific* orange shades, uncomment and modify these: */
-    /*
-    --accent: #FF6F00;           // A more intense orange for accent
-    --accent-secondary: #FFA726; // A brighter orange for accent secondary
-    --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
-    */
-}/* --- OVERRIDE FOR SOLID ORANGE TEXT IN DARK THEME (Paste at the very end of your style.css) --- */
-
-/* This targets the main hero title ("Welcome to Zenith") in the dark theme */
-body[data-theme="dark"] .hero h1 {
-    color: #FF8C00; /* Sets the text to a solid Dark Orange */
-    background: none; /* Removes the background gradient */
-    -webkit-background-clip: unset; /* Resets background clip for WebKit browsers */
-    -webkit-text-fill-color: initial; /* Allows text to be filled with the color property */
-    background-clip: unset; /* Resets background clip for standard browsers */
-}
-
-/* You might also want to apply a similar change to the logo if it's currently a gradient and you want it solid */
-/* Uncomment and adjust if needed:
-body[data-theme="dark"] .logo {
-    color: #FF8C00; 
-    background: none;
-    -webkit-background-clip: unset;
-    -webkit-text-fill-color: initial;
-    background-clip: unset;
-}
-*//* --- OVERRIDE FOR DARK THEME HERO H1 TEXT COLOR (Less Bright Orange) --- */
-
-/* This targets the main hero title ("Welcome to Zenith") in the dark theme */
-body[data-theme="dark"] .hero h1 {
-    color: #E67E22; /* A darker, less bright orange */
-    /* Ensure no background/gradient properties are overriding this if you previously added them for this specific text */
-    background: none; /* Make sure any background gradient is removed for this solid color */
-    -webkit-background-clip: unset;
-    -webkit-text-fill-color: initial;
-    background-clip: unset;
-}
-/* --- OVERRIDE FOR HERO H1 FONT STYLE (Paste at the very end of your style.css) --- */
-
-/* This targets the main hero title ("Welcome to Zenith") in both dark and light themes */
-/* --- OVERRIDE FOR HERO H1 FONT STYLE (Cozy Quicksand) --- */
-
-/* This targets the main hero title ("Welcome to Zenith") in both dark and light themes */
-.hero h1 {
-    font-family: 'Quicksand', sans-serif; /* Apply the new cozy font */
-    font-weight: 700; /* A good bold weight for impact without being too heavy */
-}
-/* --- OVERRIDE FOR NAVIGATION BAR LOGO FONT STYLE (Cozy Quicksand) --- */
-
-/* This targets the logo text in the navigation bar */
-.nav .logo {
-    font-family: 'Quicksand', sans-serif; /* Apply the cozy font */
-    font-weight: 700; /* A good bold weight for clarity in the nav bar */
-}
-/* --- OVERRIDE FOR GLOBAL FONT STYLE (Quicksand for everything) --- */
-
-/* Apply Quicksand to the entire body */
-body {
-    font-family: 'Quicksand', sans-serif; 
-}
-
-/* Cleanup: Remove redundant font-family declarations from specific elements
-   as they will now inherit from the body. You can keep font-weight. */
-.hero h1 {
-    /* REMOVE THIS LINE IF PRESENT: font-family: 'Quicksand', sans-serif; */
-    font-weight: 700; /* Keep this if you want it specifically bold */
-}
-
-.nav .logo {
-    /* REMOVE THIS LINE IF PRESENT: font-family: 'Quicksand', sans-serif; */
-    font-weight: 700; /* Keep this if you want it specifically bold */
-}
-/* --- GLOBAL TEXT COLOR OVERRIDE TO ROSE RED (Paste at the very end of your style.css) --- */
-
-/* Adjusting Text Colors for the Dark Theme */
-:root {
-    --text-primary: #E52B55;    /* Slightly brighter rose red for main text */
-    --text-secondary: #FF8F9B;  /* Lighter rose red for secondary text */
-    --text-muted: #FFB3BB;      /* Muted rose red for subtle text */
-
-    /* Adjusting accent colors to be rose red for items like buttons/titles that use them */
-    --accent: #E52B50;           /* Main Rose Red */
-    --accent-secondary: #FF6680; /* Brighter Rose Red for gradient ends */
-    --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
-}
-
-/* Adjusting Text Colors for the Light Theme */
-[data-theme="light"] {
-    --text-primary: #9B0032;    /* Darker rose red for main text on light background */
-    --text-secondary: #C23A63;  /* Medium rose red for secondary text */
-    --text-muted: #E06C92;      /* Lighter rose red for subtle text */
-
-    /* Adjusting accent colors to be rose red */
-    --accent: #E52B50;           /* Main Rose Red */
-    --accent-secondary: #FF6680; /* Brighter Rose Red for gradient ends */
-    --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
-}
-
-
-/* Specific Overrides for elements that previously had special text effects (like gradients)
-   or fixed colors, to ensure they also become solid Rose Red. */
-
-/* Hero Heading (e.g., "Welcome to Zenith") */
-.hero h1 {
-    color: #E52B50 !important; /* Force solid Rose Red */
-    background: none !important; /* Remove any lingering background gradient */
-    -webkit-background-clip: unset !important; /* Reset WebKit specific background clipping */
-    -webkit-text-fill-color: initial !important; /* Allow text to be filled by color property */
-    background-clip: unset !important; /* Reset standard background clipping */
-}
-
-/* Navigation Bar Logo */
-.nav .logo {
-    color: #E52B50 !important; /* Force solid Rose Red */
-    background: none !important;
-    -webkit-background-clip: unset !important;
-    -webkit-text-fill-color: initial !important;
-    background-clip: unset !important;
-}
-
-/* Secondary Buttons - Change their text to Rose Red */
-.btn-secondary {
-    color: #E52B50 !important;
-}
-
-/* Stat Numbers - Change their text to Rose Red */
-.stat-number {
-    color: #E52B50 !important;
-}
-
-/* Primary Buttons - Keep their text white for contrast against the rose button background */
-.btn-primary {
-    color: white !important; 
-}
-/* --- OVERRIDE FOR DARK MODE ANIMATED BACKGROUND GRADIENT (Cool Tones) --- */
-
-/* This block changes the full-page animated background gradient to cooler, deeper tones in dark mode. */
-:root { /* This targets the default/dark theme variables */
-    --animated-bg-gradient: linear-gradient(-45deg, #0F0C29, #302B63, #24243E, #203A43, #0F2027); 
-    /* This gradient transitions through deep blues and purples for a cool, sophisticated feel. */
-}
-/* --- CSS-GENERATED GEOMETRIC PATTERN (Bright Triangles) --- */
-
-/* Paste this block at the very end of your style.css */
-.bg-animation {
-    /* This creates a pattern of repeating triangles */
-    background-image:
-        linear-gradient(45deg, #FF69B4 25%, transparent 25%), /* Hot Pink diagonal line */
-        linear-gradient(-45deg, #FF69B4 25%, transparent 25%), /* Hot Pink diagonal line */
-        linear-gradient(45deg, transparent 75%, #A7DBF5 75%), /* Sky Blue diagonal line */
-        linear-gradient(-45deg, transparent 75%, #A7DBF5 75%); /* Sky Blue diagonal line */
-    background-size: 50px 50px; /* Adjust for larger/smaller triangles */
-    background-position: 0 0, 0 25px, 25px -25px, 25px 0px; /* Adjust positions for seamless tiling */
-    background-repeat: repeat; /* Ensure the pattern tiles */
-    background-attachment: fixed; /* Keeps the pattern fixed in the viewport */
-
-    animation: none !important; /* Disables any previous animation */
-    opacity: 1; /* Keeps the pattern fully visible */
-
-    /* A fallback solid background color, matching one of the pattern's base colors */
-    background-color: #A7DBF5; /* Bright Sky Blue as fallback */
-}
-/* --- CSS-GENERATED GEOMETRIC PATTERN (Animated Gradient Circles) --- */
-
-/* Paste this block at the very end of your style.css */
-.bg-animation {
-    /* This creates a repeating pattern of 4 gradient-filled circles */
-    background-image:
-        radial-gradient(circle at 10% 20%, #A7DBF5, #FF69B4), /* Circle 1: Blue to Pink */
-        radial-gradient(circle at 80% 50%, #FF69B4, #A7DBF5), /* Circle 2: Pink to Blue */
-        radial-gradient(circle at 30% 90%, #6EE7B7, #FDE68A), /* Circle 3: Green to Yellow */
-        radial-gradient(circle at 60% 10%, #FDE68A, #6EE7B7); /* Circle 4: Yellow to Green */
-
-    background-size: 200px 200px; /* Size of one tile containing the 4 circles. Adjust for bigger/smaller effect. */
-    background-repeat: repeat; /* Ensures the pattern tiles across the entire background */
-    background-attachment: fixed; /* Keeps the pattern fixed in the viewport */
-
-    /* Re-enabling and adapting the animation to move the pattern */
-    animation: animateCircles 30s linear infinite; /* New animation for smoother, slower movement */
-    opacity: 1; /* Keep fully visible */
-
-    /* Fallback solid color */
-    background-color: #1a1d24; /* A dark grey fallback */
-}
-
-/* NEW KEYFRAMES FOR CIRCLE MOVEMENT */
-/* Paste this below the .bg-animation rule if you haven't defined it before,
-   or modify an existing animation that changes background-position. */
-@keyframes animateCircles {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; } /* Moves diagonally across the background */
-}/* --- CSS-GENERATED BACKGROUND (4 Animated Gradient Circles - NOT REPEATING) --- */
-
-/* Paste this block at the very end of your style.css */
-.bg-animation {
-    background-image:
-        /* Circle 1: Blue to Pink */
-        radial-gradient(circle, #A7DBF5 0%, #FF69B4 70%),
-        /* Circle 2: Pink to Blue */
-        radial-gradient(circle, #FF69B4 0%, #A7DBF5 70%),
-        /* Circle 3: Green to Yellow */
-        radial-gradient(circle, #6EE7B7 0%, #FDE68A 70%),
-        /* Circle 4: Yellow to Green */
-        radial-gradient(circle, #FDE68A 0%, #6EE7B7 70%);
-
-    /* Set individual sizes for each circle layer */
-    background-size: 180px 180px, 220px 220px, 150px 150px, 200px 200px; /* Adjust for desired sizes */
-    
-    /* Crucial: Prevents the circles from repeating */
-    background-repeat: no-repeat; 
-    
-    /* Set initial positions for each circle. Adjust these for where they start on screen. */
-    background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%;
-    
-    background-attachment: fixed; /* Keeps circles fixed relative to viewport */
-
-    /* NEW ANIMATION FOR INDIVIDUAL CIRCLE MOVEMENT */
-    animation: animateIndividualCircles 30s linear infinite; /* Adjust duration for speed */
-    opacity: 1; /* Keep fully visible */
-
-    /* Fallback background color if circles aren't visible */
-    background-color: #1a1d24; /* A dark grey fallback for empty space */
-}
-
-/* NEW KEYFRAMES FOR INDIVIDUAL CIRCLE MOVEMENT */
-/* Paste this below the .bg-animation rule. */
-@keyframes animateIndividualCircles {
-    0% {
-        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%;
-    }
-    25% {
-        background-position: 15% 5%, 65% 35%, 20% 75%, 90% 55%;
-    }
-    50% {
-        background-position: 5% 20%, 75% 25%, 30% 70%, 80% 65%;
-    }
-    75% {
-        background-position: 12% 15%, 68% 28%, 22% 82%, 88% 58%;
-    }
-    100% {
-        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%;
     }
 }

@@ -681,3 +681,100 @@ body {
 :root { /* This targets the default/dark theme variables */
     --bg-primary-rgb: 25, 30, 38; /* A very dark, cool blue-grey to replace the brown */
 }
+/* --- OVERRIDE FOR DROPDOWN MENU STYLING (Paste at the very end of your style.css) --- */
+
+/* Define a font-family variable for global use across components if not already */
+:root {
+    --font-family: 'Quicksand', sans-serif;
+}
+[data-theme="light"] {
+    --font-family: 'Quicksand', sans-serif;
+}
+
+/* Style for the main dropdown button (assuming a <select> element or similar) */
+select {
+    /* Background matches your main content, but slightly darker for distinction */
+    background-color: rgba(var(--bg-primary-rgb), 0.8);
+    color: var(--text-primary); /* Text color inside the dropdown button */
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    appearance: none; /* Removes default browser styling (e.g., arrow icon) */
+    -webkit-appearance: none; /* For WebKit browsers */
+    cursor: pointer;
+    font-family: var(--font-family); /* Ensures it uses your global font */
+    font-weight: 500; /* Medium weight for readability */
+    outline: none; /* Remove default focus outline */
+}
+
+select:focus {
+    border-color: var(--accent); /* Accent color border when focused */
+    box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.5); /* Optional: a subtle glow */
+}
+
+/* Styling for the dropdown options list (if custom, use your class names) */
+/* Note: Styling for <option> elements within a <select> is notoriously limited and inconsistent across browsers.
+   For full control, a custom dropdown built with <div> and <ul><li> is usually required. */
+select option {
+    background-color: rgba(var(--bg-primary-rgb), 0.95); /* Background for individual options */
+    color: var(--text-primary); /* Text color for unselected options */
+    padding: 8px 12px; /* Add some padding to options */
+}
+
+/* KEY CHANGE: Style for hover/selected option in the dropdown */
+/* This will change the bright blue to your accent color (Rose Red) */
+select option:checked,
+select option:hover { /* This might have limited effect on <option> in some browsers */
+    background-color: var(--accent) !important; /* Use your main accent color (Rose Red) */
+    color: white !important; /* Ensure text is white on rose red highlight for contrast */
+}
+
+/* If you are using a custom dropdown (e.g., built with <div> and <ul><li> for full styling control),
+   you will likely have classes like these instead of 'select option'.
+   You would uncomment and adjust these rules to match your HTML class names:
+*/
+/*
+.custom-dropdown-wrapper { // Styles for the wrapper that contains the button and the list
+    position: relative;
+    display: inline-block;
+}
+
+.custom-dropdown-button { // Styles for the clickable button part of the dropdown
+    background-color: rgba(var(--bg-primary-rgb), 0.8);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-weight: 500;
+}
+
+.custom-dropdown-list { // Styles for the actual list of options when it's open
+    position: absolute;
+    top: 100%; // Position below the button
+    left: 0;
+    z-index: 10; // Ensure it's on top of other content
+    background-color: rgba(var(--bg-primary-rgb), 0.95);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    width: 100%; // Match button width
+    list-style: none;
+    padding: 0;
+    margin-top: 4px; // Small gap below button
+    box-shadow: var(--shadow);
+}
+
+.custom-dropdown-item { // Styles for individual items in the list (e.g., <li>)
+    color: var(--text-primary);
+    padding: 8px 12px;
+    cursor: pointer;
+    font-family: var(--font-family);
+}
+
+.custom-dropdown-item:hover,
+.custom-dropdown-item.selected {
+    background-color: var(--accent); // Your accent color for hover/selected
+    color: white; // White text on highlight
+}
+*/

@@ -394,3 +394,52 @@ body.dark {
   --shadow: rgba(0, 0, 0, 0.3);              /* Standard dark shadow */
   --shad
 
+:root {
+  --bg: #f5f4ff;
+  --text: #2e1f3f;
+  --card-bg: #ffffff;
+  --accent: #c4a7e7;
+  --shadow: rgba(196, 167, 231, 0.1);
+  --shadow-hover: rgba(196, 167, 231, 0.2);
+}
+
+body.dark {
+  --bg: #181a2f;
+  --text: #f5eaff;
+  --card-bg: #252a41;
+  --accent: #d4b2f0;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-hover: rgba(0, 0, 0, 0.5);
+}
+
+/* Quote box styling */
+.quote-box {
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 12px var(--shadow);
+  padding: 1.5rem;
+  margin: 2rem auto;
+  border-radius: 1rem;
+  max-width: 600px;
+  text-align: center;
+  color: var(--text);
+}
+
+.quote-text {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-family: 'Comfortaa', cursive;
+}
+
+.secondary-btn {
+  background-color: var(--accent);
+  color: var(--text);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.secondary-btn:hover {
+  background-color: var(--shadow-hover);
+}

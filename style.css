@@ -675,3 +675,9 @@ body {
 .nav-container {
     padding: 0 40px;
 }
+/* --- OVERRIDE FOR DARK THEME MAIN CONTENT BACKGROUND COLOR (Paste at the very end of your style.css) --- */
+
+/* This block changes the solid background color of main content areas like homepage/dashboard in dark mode. */
+:root { /* This targets the default/dark theme variables */
+    --bg-primary-rgb: 25, 30, 38; /* A very dark, cool blue-grey to replace the brown */
+}

@@ -1,48 +1,61 @@
 /* ======================================================= */
-/* ===      FINAL CONSOLIDATED STYLE.CSS WITH THEMED GRADIENT CIRCLES   === */
-/* ===      AND DISTINCT DARK/LIGHT MODES (Fixed)                       === */
+/* ===      FINAL CONSOLIDATED STYLE.CSS - ALL FEATURES IN ONE PLACE   === */
 /* ======================================================= */
 
+/* --- Font Imports --- */
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
-/* Montserrat is no longer strictly needed if Quicksand is global and no other elements use Montserrat */
+/* Montserrat is only imported if you explicitly use it somewhere else not covered by global Quicksand */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap'); 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap'); /* Global font */
 
-/* Basic Reset */
+/* --- Basic Reset --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* --- COLOR PALETTES & FONT --- */
+/* --- COLOR PALETTES & THEME VARIABLES (Consolidated) --- */
 
-/* Dark Theme: "Warm Dusk" - All variables defined in one place */
+/* Dark Theme: "Warm Dusk" */
 :root {
-    /* RGB components for semi-transparency of content blocks */
-    --bg-primary-rgb: 28, 25, 23; /* Original dark primary color */
-    --bg-secondary-rgb: 41, 37, 36; /* Original dark secondary color */
-    --surface-rgb: 245, 233, 226; /* Original surface color */
+    /* Background Base Colors (RGB for transparency) */
+    --bg-primary-rgb: 25, 30, 38; /* Main background color for content blocks (Cool Dark Blue-Grey) */
+    --bg-secondary-rgb: 41, 37, 36; /* Dark secondary color (original from Warm Dusk) */
+    --surface-rgb: 245, 233, 226; /* Light surface color (original from Warm Dusk) */
 
     /* Text Colors - Neutral Greys */
     --text-primary: #F0F2F5;    /* Very light grey for main text */
     --text-secondary: #B0B7BF;  /* Lighter grey for secondary text */
     --text-muted: #8F97A0;      /* Medium grey for subtle text */
 
-    /* Accent Colors - Cool Tones (for buttons, etc.) */
+    /* Accent Colors - Cool Tones (for buttons, titles, etc.) */
     --accent: #5eead4;           /* Bright Cyan */
     --accent-secondary: #a78bfa; /* Soft Purple */
     --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
 
-    /* Card Gradient - NOW VERY TRANSPARENT */
-    --card-gradient: linear-gradient(135deg, rgba(58, 51, 49, 0.08), rgba(47, 42, 40, 0.08)); /* Very low opacity */
-
-    /* Text Shadow Color */
-    --text-shadow-color: rgba(0, 0, 0, 0.7); /* Dark shadow for contrast */
-
-    /* Shadows */
+    /* Shadows & Borders */
     --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-    --nav-bg: rgba(41, 37, 36, 0.9);
+    --border: rgba(245, 233, 226, 0.2);
+
+    /* Navigation Bar Background - Cool Dark Blue-Grey */
+    --nav-bg: rgba(25, 30, 38, 0.9); 
+
+    /* Opacity Levels for Content Blocks (for readability) */
+    --homepage-bg-opacity: 0.9; /* Main content areas (homepage, dashboard, feature pages) */
+    --surface-element-bg-opacity: 0.85; /* Secondary elements (continue-section, widgets, secondary buttons) */
+    --card-bg-opacity: 0.9; /* Feature cards (tiles) */
+
+    /* Card Gradient (uses card-bg-opacity for translucency) */
+    --card-gradient: linear-gradient(135deg, 
+                     rgba(var(--bg-secondary-rgb), var(--card-bg-opacity)), 
+                     rgba(var(--bg-secondary-rgb), var(--card-bg-opacity))); /* Solid color with opacity */
+
+    /* Text Shadow Color (for contrast against dynamic background) */
+    --text-shadow-color: rgba(0, 0, 0, 0.7); 
+
+    /* Global Font Family */
+    --font-family: 'Quicksand', sans-serif;
 
     /* Fallback background color for empty space if circles aren't visible */
     --background-fallback-color: #1a1d24; /* A dark grey fallback */
@@ -50,10 +63,10 @@
 
 /* Light Theme: "Daybreak" - All variables defined in one place */
 [data-theme="light"] {
-    /* RGB components for semi-transparency of content blocks */
-    --bg-primary-rgb: 255, 248, 245;
-    --bg-secondary-rgb: 255, 255, 255;
-    --surface-rgb: 77, 64, 58;
+    /* Background Base Colors (RGB for transparency) */
+    --bg-primary-rgb: 255, 248, 245; 
+    --bg-secondary-rgb: 255, 255, 255; 
+    --surface-rgb: 77, 64, 58; 
 
     /* Text Colors - Neutral Greys */
     --text-primary: #2D3748;
@@ -65,23 +78,36 @@
     --accent-secondary: #ec4899;
     --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
 
-    /* Card Gradient - NOW VERY TRANSPARENT */
-    --card-gradient: linear-gradient(135deg, rgba(247, 240, 235, 0.08), rgba(255, 224, 194, 0.08));
+    /* Shadows & Borders */
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --border: rgba(77, 64, 58, 0.15);
+
+    /* Navigation Bar Background - Light */
+    --nav-bg: rgba(255, 248, 245, 0.9);
+
+    /* Opacity Levels for Content Blocks */
+    --homepage-bg-opacity: 0.9; 
+    --surface-element-bg-opacity: 0.85; 
+    --card-bg-opacity: 0.9; 
+
+    /* Card Gradient (uses card-bg-opacity for translucency) */
+    --card-gradient: linear-gradient(135deg, 
+                     rgba(247, 240, 235, var(--card-bg-opacity)), 
+                     rgba(255, 224, 194, var(--card-bg-opacity)));
 
     /* Text Shadow Color */
     --text-shadow-color: rgba(77, 64, 58, 0.3);
 
-    /* Shadows */
-    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --nav-bg: rgba(255, 248, 245, 0.9);
+    /* Global Font Family (redefined for consistency) */
+    --font-family: 'Quicksand', sans-serif;
 
     /* Fallback background color for empty space if circles aren't visible */
-    --background-fallback-color: #fff8f5; /* Light fallback */
+    --background-fallback-color: #fff8f5; 
 }
 
-/* Base Body Styles - Applies Quicksand to everything */
+/* --- Base Body Styles --- */
 body {
-    font-family: 'Quicksand', sans-serif; /* Set Quicksand as the global font */
+    font-family: var(--font-family); /* Set Quicksand as the global font */
     background: none; /* No default body background, let bg-animation handle it */
     color: var(--text-primary);
     min-height: 100vh;
@@ -90,7 +116,7 @@ body {
     position: relative;
 }
 
-/* --- ANIMATED BACKGROUND: 6 ANIMATED GRADIENT CIRCLES (Non-Repeating) --- */
+/* --- ANIMATED BACKGROUND: 8 ANIMATED GRADIENT CIRCLES (Non-Repeating) --- */
 .bg-animation {
     position: fixed;
     top: 0;
@@ -99,68 +125,74 @@ body {
     height: 100%;
     z-index: -1;
 
-    /* Define 6 distinct radial gradients for the background image */
+    /* Define 8 distinct radial gradients for the background image */
     background-image:
         radial-gradient(circle, #A7DBF5 0%, #FF69B4 70%), /* 1: Blue to Pink */
         radial-gradient(circle, #FF69B4 0%, #A7DBF5 70%), /* 2: Pink to Blue */
         radial-gradient(circle, #6EE7B7 0%, #FDE68A 70%), /* 3: Green to Yellow */
         radial-gradient(circle, #FDE68A 0%, #6EE7B7 70%), /* 4: Yellow to Green */
         radial-gradient(circle, #DDA0DD 0%, #40E0D0 70%), /* 5: Plum to Turquoise */
-        radial-gradient(circle, #8A2BE2 0%, #5F9EA0 70%); /* 6: Blue Violet to Cadet Blue */
+        radial-gradient(circle, #8A2BE2 0%, #5F9EA0 70%), /* 6: Blue Violet to Cadet Blue */
+        radial-gradient(circle, #20B2AA 0%, #9370DB 70%), /* 7: Light Sea Green to Medium Purple */
+        radial-gradient(circle, #00CED1 0%, #BA55D3 70%); /* 8: Dark Cyan to Medium Orchid */
     
     /* Set individual sizes for each circle layer (order matches background-image) */
-    background-size: 180px 180px, /* Size for Circle 1 */
-                     220px 220px, /* Size for Circle 2 */
-                     150px 150px, /* Size for Circle 3 */
-                     200px 200px, /* Size for Circle 4 */
-                     190px 190px, /* Size for Circle 5 */
-                     160px 160px; /* Size for Circle 6 */
+    background-size: 180px 180px, /* 1 */
+                     220px 220px, /* 2 */
+                     150px 150px, /* 3 */
+                     200px 200px, /* 4 */
+                     190px 190px, /* 5 */
+                     160px 160px, /* 6 */
+                     170px 170px, /* 7 */
+                     140px 140px; /* 8 */
 
-    background-repeat: no-repeat; /* Crucial: Ensures circles do NOT repeat */
+    background-repeat: no-repeat; /* Ensures circles do NOT repeat */
     
     /* Set initial random-like positions for each circle. Adjust these to change starting points. */
-    background-position: 10% 10%, /* Position for Circle 1 */
-                         70% 30%, /* Position for Circle 2 */
-                         25% 80%, /* Position for Circle 3 */
-                         85% 60%, /* Position for Circle 4 */
-                         50% 20%, /* Position for Circle 5 */
-                         5% 55%;  /* Position for Circle 6 */
+    background-position: 10% 10%, /* 1 */
+                         70% 30%, /* 2 */
+                         25% 80%, /* 3 */
+                         85% 60%, /* 4 */
+                         50% 20%, /* 5 */
+                         5% 55%,  /* 6 */
+                         90% 15%, /* 7 */
+                         30% 5%;  /* 8 */
     
     background-attachment: fixed; /* Keeps circles fixed relative to viewport */
 
-    /* Apply the animation to move all 6 circles simultaneously. Increased duration for smoother movement. */
+    /* Apply the animation to move all 8 circles simultaneously. */
     animation: animateIndividualCircles 40s linear infinite;
     opacity: 1; /* Keep fully visible */
 
     /* Fallback background color for empty space if circles aren't visible */
-    background-color: var(--background-fallback-color); /* Now uses theme-specific fallback */
+    background-color: var(--background-fallback-color); 
 }
 
-/* KEYFRAMES FOR INDIVIDUAL CIRCLE MOVEMENT */
+/* --- KEYFRAMES FOR INDIVIDUAL CIRCLE MOVEMENT --- */
 @keyframes animateIndividualCircles {
     0% {
         /* Start positions */
-        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%, 50% 20%, 5% 55%;
+        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%, 50% 20%, 5% 55%, 90% 15%, 30% 5%;
     }
     25% {
         /* Shift positions for the first quarter of the animation */
-        background-position: 15% 5%, 65% 35%, 20% 75%, 90% 55%, 55% 15%, 10% 50%;
+        background-position: 15% 5%, 65% 35%, 20% 75%, 90% 55%, 55% 15%, 10% 50%, 85% 20%, 35% 10%;
     }
     50% {
         /* Continue movement for the middle of the animation */
-        background-position: 5% 20%, 75% 25%, 30% 70%, 80% 65%, 45% 25%, 0% 60%;
+        background-position: 5% 20%, 75% 25%, 30% 70%, 80% 65%, 45% 25%, 0% 60%, 95% 10%, 25% 0%;
     }
     75% {
         /* Return towards original positions */
-        background-position: 12% 15%, 68% 28%, 22% 82%, 88% 58%, 52% 18%, 8% 52%;
+        background-position: 12% 15%, 68% 28%, 22% 82%, 88% 58%, 52% 18%, 8% 52%, 88% 18%, 32% 8%;
     }
     100% {
         /* Back to start for a seamless loop */
-        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%, 50% 20%, 5% 55%;
+        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%, 50% 20%, 5% 55%, 90% 15%, 30% 5%;
     }
 }
 
-/* Keyframes for a general fade-in animation (used for dashboard) */
+/* --- KEYFRAMES FOR GENERAL FADE-IN ANIMATION --- */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -229,24 +261,31 @@ body {
     transform: scale(1.05);
 }
 
-/* --- HOMEPAGE & SHARED COMPONENTS --- */
+/* --- HOMEPAGE & SHARED COMPONENTS (Now Full-Width Background) --- */
 .homepage {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 100px 40px 40px;
+    
     position: relative;
     z-index: 1;
-    /* BACKGROUND NOW MUCH MORE TRANSPARENT */
-    background: rgba(var(--bg-primary-rgb), 0.05); /* Very low opacity to show circles */
-    border-radius: 20px;
-    box-shadow: var(--shadow);
+    
+    /* Make background stretch full width and be semi-transparent */
+    background: rgba(var(--bg-primary-rgb), var(--homepage-bg-opacity)); 
+    max-width: none; /* Remove max-width constraint */
+    margin: 0; /* Remove auto margins for full width */
+    padding: 100px 0 40px; /* Adjust vertical padding; horizontal padding handled by inner elements */
+
+    border-radius: 0; /* Remove border-radius to avoid rounded corners on full-width background */
+    box-shadow: none; /* Remove box-shadow to avoid shadows on full-width background */
 }
 
 .hero {
     text-align: center;
-    max-width: 800px;
+    max-width: 800px; /* Keep hero content max-width for readability */
+    padding: 0 40px; /* Add horizontal padding for spacing from screen edges */
+    margin: 0 auto; /* Center the content */
 }
 
 .hero h1 {
@@ -254,7 +293,6 @@ body {
     font-weight: 900; /* Preserve bold for title */
     line-height: 1.1;
     margin-bottom: 24px;
-    /* Removed background-clip:text/transparent to make it solid color */
     color: var(--text-primary) !important; /* Apply primary text color */
     text-shadow: 2px 2px 6px var(--text-shadow-color);
 }
@@ -290,7 +328,7 @@ body {
 
 .btn-primary {
     background: var(--gradient-accent);
-    color: white !important; /* Kept white for contrast */
+    color: white !important;
     box-shadow: var(--shadow);
 }
 
@@ -300,21 +338,20 @@ body {
 }
 
 .btn-secondary {
-    background: rgba(var(--surface-rgb), 0.2);
-    color: var(--text-primary) !important; /* Forced primary text color */
+    background: rgba(var(--surface-rgb), var(--surface-element-bg-opacity)); /* Uses semi-transparent surface opacity */
+    color: var(--text-primary) !important;
     border: 1px solid var(--border);
 }
 
 .btn-secondary:hover {
-    background: rgba(var(--surface-rgb), 0.3);
+    background: rgba(var(--surface-rgb), var(--surface-element-bg-opacity)); /* Hover effect uses same opacity */
     transform: translateY(-2px);
 }
 
 .continue-section {
     margin-top: 80px;
     padding: 40px;
-    /* BACKGROUND NOW MUCH MORE TRANSPARENT */
-    background: rgba(var(--surface-rgb), 0.05); /* Very low opacity to show circles */
+    background: rgba(var(--surface-rgb), var(--surface-element-bg-opacity)); /* Uses semi-transparent surface opacity */
     border-radius: 20px;
     border: 1px solid var(--border);
     position: relative;
@@ -348,7 +385,7 @@ body {
 .stat-number {
     font-size: 32px;
     font-weight: 800;
-    color: var(--accent) !important; /* Forced accent color */
+    color: var(--accent) !important;
     margin-bottom: 4px;
     text-shadow: 1px 1px 3px var(--text-shadow-color);
 }
@@ -361,19 +398,22 @@ body {
     text-shadow: 1px 1px 2px var(--text-shadow-color);
 }
 
-/* --- DASHBOARD --- */
+/* --- DASHBOARD (Now Full-Width Background) --- */
 .dashboard {
     min-height: 100vh;
-    padding: 140px 40px 40px;
-    max-width: 1400px;
-    margin: 0 auto;
-    text-align: center;
+    padding: 140px 0 40px; /* Adjust vertical padding; horizontal padding handled by inner elements */
+    
     position: relative;
     z-index: 1;
-    /* BACKGROUND NOW MUCH MORE TRANSPARENT */
-    background: rgba(var(--bg-primary-rgb), 0.05); /* Very low opacity to show circles */
-    border-radius: 20px;
-    box-shadow: var(--shadow);
+    
+    /* Make background stretch full width and be semi-transparent */
+    background: rgba(var(--bg-primary-rgb), var(--homepage-bg-opacity)); 
+    max-width: none; /* Remove max-width constraint */
+    margin: 0; /* Remove auto margins for full width */
+
+    border-radius: 0; /* Remove border-radius to avoid rounded corners on full-width background */
+    box-shadow: none; /* Remove box-shadow to avoid shadows on full-width background */
+    text-align: center; /* Keep content centered within the full width */
 }
 
 .dashboard.active {
@@ -394,11 +434,13 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 24px;
     justify-content: center;
+    max-width: 1400px; /* Keep feature grid content max-width for readability */
+    margin: 0 auto; /* Center the grid content */
+    padding: 0 40px; /* Add horizontal padding for spacing from screen edges */
 }
 
 .feature-card {
-    /* BACKGROUND NOW VERY TRANSPARENT */
-    background: var(--card-gradient); /* Will use the new, highly transparent card gradient */
+    background: var(--card-gradient); /* Uses new, more opaque card gradient */
     padding: 2.5rem; /* Increased padding to make tiles larger */
     border-radius: 16px;
     border: 1px solid var(--border);
@@ -433,13 +475,15 @@ body {
 /* --- GENERAL WIDGET & PAGE STYLING --- */
 .widget {
     padding: 24px 32px;
-    /* BACKGROUND NOW MUCH MORE TRANSPARENT */
-    background: rgba(var(--surface-rgb), 0.05); /* Very low opacity to show circles */
+    background: rgba(var(--surface-rgb), var(--surface-element-bg-opacity)); /* Uses semi-transparent surface opacity */
     border: 1px solid var(--border);
     border-radius: 16px;
     position: relative;
     z-index: 1;
     box-shadow: var(--shadow);
+    max-width: 800px; /* Keep widget content max-width for readability */
+    margin: 0 auto; /* Center the widget */
+    padding: 24px 40px; /* Adjust padding if needed */
 }
 
 .widget-title {
@@ -450,251 +494,40 @@ body {
     text-shadow: 1px 1px 2px var(--text-shadow-color);
 }
 
+/* Feature Page Container (Now Full-Width Background) */
 .feature-page-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 120px 20px 40px;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     gap: 32px;
     position: relative;
     z-index: 1;
-    /* BACKGROUND NOW MUCH MORE TRANSPARENT */
-    background: rgba(var(--bg-primary-rgb), 0.05); /* Very low opacity to show circles */
-    border-radius: 20px;
-    box-shadow: var(--shadow);
-}
-
-.feature-header {
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 24px;
-    margin-bottom: 16px;
-}
-
-.feature-header h1 {
-    font-size: clamp(2.5rem, 5vw, 3rem);
-    text-shadow: 2px 2px 4px var(--text-shadow-color);
-}
-
-.feature-header p {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-top: 8px;
-    text-shadow: 1px 1px 2px var(--text-shadow-color);
-}
-
-/* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-    .nav-container {
-        padding: 0 20px;
-    }
-    .homepage {
-        padding: 120px 20px 40px;
-    }
-    .hero h1 {
-        font-size: 3rem;
-    }
-    .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-}
-/* --- OVERRIDE FOR DARK THEME NAVIGATION BAR BACKGROUND (Paste at the very end of your style.css) --- */
-
-/* This block changes the background color of the navigation bar in dark mode. */
-:root { /* This targets the default/dark theme variables */
-    --nav-bg: rgba(25, 30, 38, 0.9); /* A dark, cool blue-grey for the nav background */
-}
-/* --- CSS-GENERATED BACKGROUND (10 Animated Gradient Circles) --- */
-
-/* Replace your existing .bg-animation rule with this block */
-/* --- CSS-GENERATED BACKGROUND (8 Animated Gradient Circles) --- */
-
-/* Replace your existing .bg-animation rule with this block */
-.bg-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-
-    /* Define 8 distinct radial gradients for the background image */
-    background-image:
-        radial-gradient(circle, #A7DBF5 0%, #FF69B4 70%), /* 1: Blue to Pink */
-        radial-gradient(circle, #FF69B4 0%, #A7DBF5 70%), /* 2: Pink to Blue */
-        radial-gradient(circle, #6EE7B7 0%, #FDE68A 70%), /* 3: Green to Yellow */
-        radial-gradient(circle, #FDE68A 0%, #6EE7B7 70%), /* 4: Yellow to Green */
-        radial-gradient(circle, #DDA0DD 0%, #40E0D0 70%), /* 5: Plum to Turquoise */
-        radial-gradient(circle, #8A2BE2 0%, #5F9EA0 70%), /* 6: Blue Violet to Cadet Blue */
-        radial-gradient(circle, #20B2AA 0%, #9370DB 70%), /* 7: Light Sea Green to Medium Purple */
-        radial-gradient(circle, #00CED1 0%, #BA55D3 70%); /* 8: Dark Cyan to Medium Orchid */
     
-    /* Set individual sizes for each circle layer (order matches background-image) */
-    background-size: 180px 180px, /* 1 */
-                     220px 220px, /* 2 */
-                     150px 150px, /* 3 */
-                     200px 200px, /* 4 */
-                     190px 190px, /* 5 */
-                     160px 160px, /* 6 */
-                     170px 170px, /* 7 */
-                     140px 140px; /* 8 */
-
-    background-repeat: no-repeat; /* Ensures circles do NOT repeat */
-    
-    /* Set initial random-like positions for each circle. Adjust these to change starting points. */
-    background-position: 10% 10%, /* 1 */
-                         70% 30%, /* 2 */
-                         25% 80%, /* 3 */
-                         85% 60%, /* 4 */
-                         50% 20%, /* 5 */
-                         5% 55%,  /* 6 */
-                         90% 15%, /* 7 */
-                         30% 5%;  /* 8 */
-    
-    background-attachment: fixed; /* Keeps circles fixed relative to viewport */
-
-    /* Apply the animation to move all 8 circles simultaneously. Duration adjusted for 8 circles. */
-    animation: animateIndividualCircles 40s linear infinite; /* Reverted to 40s duration */
-    opacity: 1; /* Keep fully visible */
-
-    /* Fallback background color for empty space if circles aren't visible */
-    background-color: var(--background-fallback-color); 
-}
-
-/* KEYFRAMES FOR INDIVIDUAL CIRCLE MOVEMENT (Updated for 8 circles) */
-/* Replace your existing @keyframes animateIndividualCircles block with this */
-@keyframes animateIndividualCircles {
-    0% {
-        /* Start positions */
-        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%, 50% 20%, 5% 55%, 90% 15%, 30% 5%;
-    }
-    25% {
-        /* Shift positions for the first quarter of the animation */
-        background-position: 15% 5%, 65% 35%, 20% 75%, 90% 55%, 55% 15%, 10% 50%, 85% 20%, 35% 10%;
-    }
-    50% {
-        /* Continue movement for the middle of the animation */
-        background-position: 5% 20%, 75% 25%, 30% 70%, 80% 65%, 45% 25%, 0% 60%, 95% 10%, 25% 0%;
-    }
-    75% {
-        /* Return towards original positions */
-        background-position: 12% 15%, 68% 28%, 22% 82%, 88% 58%, 52% 18%, 8% 52%, 88% 18%, 32% 8%;
-    }
-    100% {
-        /* Back to start for a seamless loop */
-        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%, 50% 20%, 5% 55%, 90% 15%, 30% 5%;
-    }
-}
-/* --- FIX: INCREASE CONTENT BLOCK OPACITY FOR READABILITY (Paste at the very end of your style.css) --- */
-
-/* Adjusting opacity for dark theme content backgrounds */
-:root {
-    /* Define new opacity levels as variables for clarity */
-    --homepage-bg-opacity: 0.75; /* Increased opacity for homepage/dashboard */
-    --surface-element-bg-opacity: 0.65; /* Increased opacity for continue-section/widgets/secondary buttons */
-    --card-bg-opacity: 0.75; /* Increased opacity for feature cards */
-
-    /* Update the card gradient in the dark theme to use the new card opacity */
-    --card-gradient: linear-gradient(135deg, rgba(58, 51, 49, var(--card-bg-opacity)), rgba(47, 42, 40, var(--card-bg-opacity)));
-}
-
-/* Adjusting opacity for light theme content backgrounds */
-[data-theme="light"] {
-    /* Define new opacity levels as variables for clarity */
-    --homepage-bg-opacity: 0.75;
-    --surface-element-bg-opacity: 0.65;
-    --card-bg-opacity: 0.75;
-
-    /* Update the card gradient in the light theme to use the new card opacity */
-    --card-gradient: linear-gradient(135deg, rgba(247, 240, 235, var(--card-bg-opacity)), rgba(255, 224, 194, var(--card-bg-opacity)));
-}
-
-/* Apply new opacities to relevant elements */
-
-/* Homepage, Dashboard, Feature Page Container */
-.homepage,
-.dashboard,
-.feature-page-container {
-    background: rgba(var(--bg-primary-rgb), var(--homepage-bg-opacity));
-}
-
-/* Continue Section, Widget, Secondary Buttons */
-.continue-section,
-.widget,
-.btn-secondary { 
-    background: rgba(var(--surface-rgb), var(--surface-element-bg-opacity));
-}
-
-/* Feature Cards (Tiles) */
-.feature-card {
-    background: var(--card-gradient); /* This will now use the updated opaque card gradient */
-}
-/* --- FIX: CONTENT CONTAINERS COVERING ENTIRE PAGE (Paste at the very end of your style.css) --- */
-
-/* Make the homepage stretch to full width */
-.homepage {
+    /* Make background stretch full width and be semi-transparent */
+    background: rgba(var(--bg-primary-rgb), var(--homepage-bg-opacity)); 
     max-width: none; /* Remove max-width constraint */
     margin: 0; /* Remove auto margins for full width */
-    padding: 100px 0 40px; /* Adjust padding if needed for full width */
-    background: rgba(var(--bg-primary-rgb), var(--homepage-bg-opacity)); /* Ensure background is solid */
-    /* Remove text-align: center if it's there and you want content left-aligned */
+    padding: 120px 0 40px; /* Adjust vertical padding; horizontal padding handled by inner elements */
+
+    border-radius: 0; /* Remove border-radius to avoid rounded corners on full-width background */
+    box-shadow: none; /* Remove box-shadow to avoid shadows on full-width background */
 }
 
-/* Make the dashboard stretch to full width */
-.dashboard {
-    max-width: none; /* Remove max-width constraint */
-    margin: 0; /* Remove auto margins for full width */
-    padding: 140px 0 40px; /* Adjust padding if needed for full width */
-    background: rgba(var(--bg-primary-rgb), var(--homepage-bg-opacity)); /* Ensure background is solid */
-    /* Remove text-align: center if it's there and you want content left-aligned */
-}
-
-/* Make the feature-page-container stretch to full width (if applicable) */
-.feature-page-container {
-    max-width: none; /* Remove max-width constraint */
-    margin: 0; /* Remove auto margins for full width */
-    padding: 120px 0 40px; /* Adjust padding if needed for full width */
-    background: rgba(var(--bg-primary-rgb), var(--homepage-bg-opacity)); /* Ensure background is solid */
-    /* Remove text-align: center if it's there and you want content left-aligned */
-}
-
-/* Adjust padding for inner content if the overall container is now full width,
-   to maintain content spacing from the edges of the screen. */
-.homepage .hero,
-.dashboard .feature-grid,
+/* Adjust padding for inner content within full-width feature page containers */
 .feature-page-container .feature-header,
-.feature-page-container .widget {
-    padding: 0 40px; /* Apply horizontal padding to inner content */
-    max-width: 1400px; /* Optionally re-add max-width to inner content for readability */
-    margin: 0 auto; /* Center inner content */
+.feature-page-container .widget,
+main > * /* Target direct children of <main> if used as page wrapper */
+{
+    max-width: 800px; /* Set a max-width for inner content readability */
+    margin: 0 auto; /* Center the content */
+    padding: 0 40px; /* Add horizontal padding for spacing from screen edges */
 }
 
-/* Ensure the nav-container padding is still correct for inner nav content */
-.nav-container {
-    padding: 0 40px;
-}
-/* --- OVERRIDE FOR DARK THEME MAIN CONTENT BACKGROUND COLOR (Paste at the very end of your style.css) --- */
 
-/* This block changes the solid background color of main content areas like homepage/dashboard in dark mode. */
-:root { /* This targets the default/dark theme variables */
-    --bg-primary-rgb: 25, 30, 38; /* A very dark, cool blue-grey to replace the brown */
-}
-/* --- OVERRIDE FOR DROPDOWN MENU STYLING (Paste at the very end of your style.css) --- */
-
-/* Define a font-family variable for global use across components if not already */
-:root {
-    --font-family: 'Quicksand', sans-serif;
-}
-[data-theme="light"] {
-    --font-family: 'Quicksand', sans-serif;
-}
-
+/* --- Dropdown Styling --- */
 /* Style for the main dropdown button (assuming a <select> element or similar) */
 select {
-    /* Background matches your main content, but slightly darker for distinction */
-    background-color: rgba(var(--bg-primary-rgb), 0.8);
+    background-color: rgba(var(--bg-primary-rgb), 0.8); /* Match main content background, slightly darker */
     color: var(--text-primary); /* Text color inside the dropdown button */
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -709,138 +542,53 @@ select {
 
 select:focus {
     border-color: var(--accent); /* Accent color border when focused */
-    box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.5); /* Optional: a subtle glow */
+    /* Add accent-rgb to :root/:data-theme[light] blocks for this to work */
+    /* box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.5); */ 
 }
 
 /* Styling for the dropdown options list (if custom, use your class names) */
-/* Note: Styling for <option> elements within a <select> is notoriously limited and inconsistent across browsers.
-   For full control, a custom dropdown built with <div> and <ul><li> is usually required. */
 select option {
     background-color: rgba(var(--bg-primary-rgb), 0.95); /* Background for individual options */
     color: var(--text-primary); /* Text color for unselected options */
     padding: 8px 12px; /* Add some padding to options */
 }
 
-/* KEY CHANGE: Style for hover/selected option in the dropdown */
-/* This will change the bright blue to your accent color (Rose Red) */
+/* Style for hover/selected option in the dropdown */
 select option:checked,
-select option:hover { /* This might have limited effect on <option> in some browsers */
-    background-color: var(--accent) !important; /* Use your main accent color (Rose Red) */
-    color: white !important; /* Ensure text is white on rose red highlight for contrast */
+select option:hover { 
+    background-color: var(--accent) !important; /* Use your main accent color */
+    color: white !important; /* Ensure text is white on highlight */
 }
 
-/* If you are using a custom dropdown (e.g., built with <div> and <ul><li> for full styling control),
-   you will likely have classes like these instead of 'select option'.
-   You would uncomment and adjust these rules to match your HTML class names:
-*/
-/*
-.custom-dropdown-wrapper { // Styles for the wrapper that contains the button and the list
-    position: relative;
-    display: inline-block;
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 20px;
+    }
+    .homepage {
+        padding: 120px 0 40px; /* Adjust for full width */
+    }
+    .hero {
+        padding: 0 20px; /* Adjust inner padding */
+    }
+    .homepage .hero-actions {
+        padding: 0 20px; /* Adjust inner padding for buttons */
+    }
+    .dashboard {
+        padding: 140px 0 40px; /* Adjust for full width */
+    }
+    .feature-grid {
+        padding: 0 20px; /* Adjust inner padding */
+    }
+    .widget {
+        padding: 24px 20px; /* Adjust inner padding */
+    }
+    .feature-page-container {
+        padding: 120px 0 40px; /* Adjust for full width */
+    }
+    .feature-page-container .feature-header,
+    .feature-page-container .widget,
+    main > * {
+        padding: 0 20px; /* Adjust inner content padding */
+    }
 }
-
-.custom-dropdown-button { // Styles for the clickable button part of the dropdown
-    background-color: rgba(var(--bg-primary-rgb), 0.8);
-    color: var(--text-primary);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-family: var(--font-family);
-    font-weight: 500;
-}
-
-.custom-dropdown-list { // Styles for the actual list of options when it's open
-    position: absolute;
-    top: 100%; // Position below the button
-    left: 0;
-    z-index: 10; // Ensure it's on top of other content
-    background-color: rgba(var(--bg-primary-rgb), 0.95);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    width: 100%; // Match button width
-    list-style: none;
-    padding: 0;
-    margin-top: 4px; // Small gap below button
-    box-shadow: var(--shadow);
-}
-
-.custom-dropdown-item { // Styles for individual items in the list (e.g., <li>)
-    color: var(--text-primary);
-    padding: 8px 12px;
-    cursor: pointer;
-    font-family: var(--font-family);
-}
-
-.custom-dropdown-item:hover,
-.custom-dropdown-item.selected {
-    background-color: var(--accent); // Your accent color for hover/selected
-    color: white; // White text on highlight
-}
-*/
-/* --- FIX: FEATURE PAGE BACKGROUND FOR READABILITY (Paste at the very end of your style.css) --- */
-
-/* Adjust the background of the feature page container */
-.feature-page-container {
-    /* Make it a darker, semi-transparent version of the primary background */
-    background: rgba(var(--bg-primary-rgb), 0.9); /* 90% opaque, allowing circles to subtly show through */
-    box-shadow: var(--shadow); /* Keep shadow to lift it */
-    border-radius: 20px; /* Keep consistent border-radius */
-    padding: 120px 40px 40px; /* Ensure padding is sufficient */
-}
-
-/* Ensure the inner content of feature pages is properly aligned and spaced */
-.feature-page-container .feature-header,
-.feature-page-container .widget { /* Add any other main content wrappers inside this container */
-    max-width: 800px; /* Set a max-width for content readability */
-    margin: 0 auto; /* Center the content */
-    padding: 0; /* Remove extra padding if inner elements already have it */
-}/* --- FIX: BACKGROUND FOR NOTES PAGE (General Override) --- */
-
-/* This targets common main content wrappers for the Notes page */
-main, /* Targets <main> tag if it's the wrapper */
-.notes-page-container, /* Common class name for a notes page wrapper */
-.task-page-container, /* If your notes and tasks use similar page containers */
-.feature-page-container /* Re-include this to make sure it's prioritized */
-{
-    /* Use the same transparent background settings as your other feature pages */
-    background: rgba(var(--bg-primary-rgb), 0.9); /* 90% opaque, for readability */
-    box-shadow: var(--shadow);
-    border-radius: 20px;
-    padding: 120px 40px 40px; /* Ensure sufficient padding */
-}
-
-/* Ensure inner content of these containers is properly aligned and spaced */
-main > *, /* Target direct children of <main> */
-.notes-page-container > *,
-.task-page-container > * {
-    max-width: 800px; /* Set a max-width for content readability */
-    margin: 0 auto; /* Center the content */
-    padding: 0; /* Remove extra padding if inner elements already have it */
-}
-/* --- FIX: CONTENT BLOCK OPACITY FOR BOTH DARK AND LIGHT THEMES (Paste at the very end of your style.css) --- */
-
-/* Adjusting opacity for dark theme content backgrounds to be semi-transparent */
-:root {
-    /* Set opacity levels to be semi-transparent, allowing background circles to show through */
-    --homepage-bg-opacity: 0.75; /* Main content areas (homepage, dashboard, feature pages) */
-    --surface-element-bg-opacity: 0.65; /* Secondary elements (continue-section, widgets, secondary buttons) */
-    --card-bg-opacity: 0.75; /* Feature cards (tiles) */
-
-    /* Update the card gradient in the dark theme to use the new semi-transparent card opacity */
-    --card-gradient: linear-gradient(135deg, rgba(58, 51, 49, var(--card-bg-opacity)), rgba(47, 42, 40, var(--card-bg-opacity)));
-}
-
-/* Adjusting opacity for light theme content backgrounds to be semi-transparent */
-[data-theme="light"] {
-    /* Set opacity levels to be semi-transparent, allowing background circles to show through */
-    --homepage-bg-opacity: 0.75; /* Main content areas (homepage, dashboard, feature pages) */
-    --surface-element-bg-opacity: 0.65; /* Secondary elements (continue-section, widgets, secondary buttons) */
-    --card-bg-opacity: 0.75; /* Feature cards (tiles) */
-
-    /* Update the card gradient in the light theme to use the new semi-transparent card opacity */
-    --card-gradient: linear-gradient(135deg, rgba(247, 240, 235, var(--card-bg-opacity)), rgba(255, 224, 194, var(--card-bg-opacity)));
-}
-
-/* These selectors already exist in your main CSS and will automatically pick up the updated variables */
-/* No need to paste the individual selectors like .homepage, .dashboard, etc. again if they are already defined earlier in your CSS */

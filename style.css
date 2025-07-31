@@ -21,7 +21,6 @@ body {
 }
 
 /* Theme Variables */
-/* Theme Variables */
 :root {
   --bg: #f0f4f8;
   --text: #1e1e2f;
@@ -39,7 +38,6 @@ body.dark {
   --shadow: rgba(125, 211, 252, 0.15);
   --shadow-hover: rgba(125, 211, 252, 0.3);
 }
-
 
 /* Header */
 .header {
@@ -71,7 +69,7 @@ body.dark {
 }
 
 #themeToggle:hover {
-  background: #5a3d32;
+  background: #2f6b5e;
   box-shadow: 0 10px 20px var(--shadow-hover);
   transform: scale(1.05);
 }
@@ -170,7 +168,7 @@ body.dark {
 }
 
 .task-list button.delete-btn:hover {
-  color: #f44336;
+  color: #ff6b6b;
 }
 
 /* Buttons (general) */
@@ -194,7 +192,7 @@ button {
 
 #newQuoteBtn:hover,
 #addTaskBtn:hover {
-  background: #5a3d32;
+  background: #2f6b5e;
   transform: scale(1.05);
 }
 
@@ -223,7 +221,7 @@ button {
 
 .btn-group button:hover,
 .pomodoro-controls button:hover {
-  background: #5a3d32;
+  background: #2f6b5e;
   transform: scale(1.05);
 }
 
@@ -262,7 +260,7 @@ button {
 }
 
 .quote-box button#calculateBtn:hover {
-  background: #5a3d32;
+  background: #2f6b5e;
   transform: scale(1.05);
 }
 

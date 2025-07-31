@@ -667,4 +667,55 @@ body {
 @keyframes animateCircles {
     0% { background-position: 0% 0%; }
     100% { background-position: 100% 100%; } /* Moves diagonally across the background */
+}/* --- CSS-GENERATED BACKGROUND (4 Animated Gradient Circles - NOT REPEATING) --- */
+
+/* Paste this block at the very end of your style.css */
+.bg-animation {
+    background-image:
+        /* Circle 1: Blue to Pink */
+        radial-gradient(circle, #A7DBF5 0%, #FF69B4 70%),
+        /* Circle 2: Pink to Blue */
+        radial-gradient(circle, #FF69B4 0%, #A7DBF5 70%),
+        /* Circle 3: Green to Yellow */
+        radial-gradient(circle, #6EE7B7 0%, #FDE68A 70%),
+        /* Circle 4: Yellow to Green */
+        radial-gradient(circle, #FDE68A 0%, #6EE7B7 70%);
+
+    /* Set individual sizes for each circle layer */
+    background-size: 180px 180px, 220px 220px, 150px 150px, 200px 200px; /* Adjust for desired sizes */
+    
+    /* Crucial: Prevents the circles from repeating */
+    background-repeat: no-repeat; 
+    
+    /* Set initial positions for each circle. Adjust these for where they start on screen. */
+    background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%;
+    
+    background-attachment: fixed; /* Keeps circles fixed relative to viewport */
+
+    /* NEW ANIMATION FOR INDIVIDUAL CIRCLE MOVEMENT */
+    animation: animateIndividualCircles 30s linear infinite; /* Adjust duration for speed */
+    opacity: 1; /* Keep fully visible */
+
+    /* Fallback background color if circles aren't visible */
+    background-color: #1a1d24; /* A dark grey fallback for empty space */
+}
+
+/* NEW KEYFRAMES FOR INDIVIDUAL CIRCLE MOVEMENT */
+/* Paste this below the .bg-animation rule. */
+@keyframes animateIndividualCircles {
+    0% {
+        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%;
+    }
+    25% {
+        background-position: 15% 5%, 65% 35%, 20% 75%, 90% 55%;
+    }
+    50% {
+        background-position: 5% 20%, 75% 25%, 30% 70%, 80% 65%;
+    }
+    75% {
+        background-position: 12% 15%, 68% 28%, 22% 82%, 88% 58%;
+    }
+    100% {
+        background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%;
+    }
 }

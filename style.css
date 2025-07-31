@@ -21,23 +21,25 @@ body {
 }
 
 /* Theme Variables */
+/* Theme Variables */
 :root {
-  --bg: #f9f7f1;
-  --text: #2d2d2d;
-  --card-bg: #ffffffdd;
-  --accent: #7d5a50;
-  --shadow: rgba(125, 90, 80, 0.15);
-  --shadow-hover: rgba(125, 90, 80, 0.25);
+  --bg: #f0f4f8;
+  --text: #1e1e2f;
+  --card-bg: #ffffff;
+  --accent: #3f8e7e;
+  --shadow: rgba(63, 142, 126, 0.15);
+  --shadow-hover: rgba(63, 142, 126, 0.25);
 }
 
 body.dark {
-  --bg: #1e1e1e;
-  --text: #eeeeee;
-  --card-bg: #2a2a2add;
-  --accent: #f7c59f;
-  --shadow: rgba(247, 197, 159, 0.15);
-  --shadow-hover: rgba(247, 197, 159, 0.3);
+  --bg: #121826;
+  --text: #e0eafc;
+  --card-bg: #1e293b;
+  --accent: #7dd3fc;
+  --shadow: rgba(125, 211, 252, 0.15);
+  --shadow-hover: rgba(125, 211, 252, 0.3);
 }
+
 
 /* Header */
 .header {

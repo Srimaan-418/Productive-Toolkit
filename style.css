@@ -587,3 +587,47 @@ body {
         background-position: 10% 10%, 70% 30%, 25% 80%, 85% 60%, 50% 20%, 5% 55%, 90% 15%, 30% 5%;
     }
 }
+/* --- FIX: INCREASE CONTENT BLOCK OPACITY FOR READABILITY (Paste at the very end of your style.css) --- */
+
+/* Adjusting opacity for dark theme content backgrounds */
+:root {
+    /* Define new opacity levels as variables for clarity */
+    --homepage-bg-opacity: 0.75; /* Increased opacity for homepage/dashboard */
+    --surface-element-bg-opacity: 0.65; /* Increased opacity for continue-section/widgets/secondary buttons */
+    --card-bg-opacity: 0.75; /* Increased opacity for feature cards */
+
+    /* Update the card gradient in the dark theme to use the new card opacity */
+    --card-gradient: linear-gradient(135deg, rgba(58, 51, 49, var(--card-bg-opacity)), rgba(47, 42, 40, var(--card-bg-opacity)));
+}
+
+/* Adjusting opacity for light theme content backgrounds */
+[data-theme="light"] {
+    /* Define new opacity levels as variables for clarity */
+    --homepage-bg-opacity: 0.75;
+    --surface-element-bg-opacity: 0.65;
+    --card-bg-opacity: 0.75;
+
+    /* Update the card gradient in the light theme to use the new card opacity */
+    --card-gradient: linear-gradient(135deg, rgba(247, 240, 235, var(--card-bg-opacity)), rgba(255, 224, 194, var(--card-bg-opacity)));
+}
+
+/* Apply new opacities to relevant elements */
+
+/* Homepage, Dashboard, Feature Page Container */
+.homepage,
+.dashboard,
+.feature-page-container {
+    background: rgba(var(--bg-primary-rgb), var(--homepage-bg-opacity));
+}
+
+/* Continue Section, Widget, Secondary Buttons */
+.continue-section,
+.widget,
+.btn-secondary { 
+    background: rgba(var(--surface-rgb), var(--surface-element-bg-opacity));
+}
+
+/* Feature Cards (Tiles) */
+.feature-card {
+    background: var(--card-gradient); /* This will now use the updated opaque card gradient */
+}

@@ -500,3 +500,9 @@ body {
         align-items: stretch;
     }
 }
+/* --- OVERRIDE FOR DARK THEME NAVIGATION BAR BACKGROUND (Paste at the very end of your style.css) --- */
+
+/* This block changes the background color of the navigation bar in dark mode. */
+:root { /* This targets the default/dark theme variables */
+    --nav-bg: rgba(25, 30, 38, 0.9); /* A dark, cool blue-grey for the nav background */
+}

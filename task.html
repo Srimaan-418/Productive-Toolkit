@@ -32,13 +32,41 @@
     const taskInput = document.getElementById('taskInput');
     const taskList = document.getElementById('taskList');
 
+    // Load tasks from localStorage on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = JSON.parse(localStorage.getItem('tasks')) || [];
+      saved.forEach(text => createTaskElement(text));
+    });
+
+    // Add Task button
     addTaskBtn.addEventListener('click', () => {
       const taskText = taskInput.value.trim();
       if (!taskText) return;
 
+      createTaskElement(taskText);
+      saveTask(taskText);
+      taskInput.value = '';
+    });
+
+    // Save task to localStorage
+    function saveTask(text) {
+      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      tasks.push(text);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    // Delete task from localStorage
+    function deleteTask(text) {
+      let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      tasks = tasks.filter(t => t !== text);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    // Create and insert task into DOM
+    function createTaskElement(text) {
       const li = document.createElement('li');
-      li.textContent = taskText;
-      li.classList.add('task-item'); // used for animation
+      li.textContent = text;
+      li.classList.add('task-item');
       li.addEventListener('click', () => li.classList.toggle('completed'));
 
       const delBtn = document.createElement('button');
@@ -46,14 +74,16 @@
       delBtn.classList.add('delete-btn');
       delBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        li.classList.add('remove'); // trigger animation
-        setTimeout(() => li.remove(), 300); // match animation duration
+        li.classList.add('remove');
+        setTimeout(() => {
+          li.remove();
+          deleteTask(text);
+        }, 300);
       });
 
       li.appendChild(delBtn);
       taskList.appendChild(li);
-      taskInput.value = '';
-    });
+    }
   </script>
 </body>
 </html>

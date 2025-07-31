@@ -272,3 +272,34 @@ button {
   font-size: 0.9rem;
   font-weight: 600;
 }
+:root {
+  --bg: #f0f4f8;
+  --text: #1e1e2f;
+  --card-bg: #ffffff;
+  --accent: #3f8e7e;
+  --shadow: rgba(63, 142, 126, 0.15);
+  --shadow-hover: rgba(63, 142, 126, 0.25);
+}
+
+body.dark {
+  --bg: #121826;
+  --text: #e0eafc;
+  --card-bg: #1e293b;
+  --accent: #7dd3fc;
+  --shadow: rgba(125, 211, 252, 0.15);
+  --shadow-hover: rgba(125, 211, 252, 0.3);
+}
+
+#themeToggle:hover,
+#newQuoteBtn:hover,
+#addTaskBtn:hover,
+.pomodoro-controls button:hover,
+.btn-group button:hover,
+.quote-box button#calculateBtn:hover {
+  background: #2f6b5e;
+  transform: scale(1.05);
+}
+
+.task-list button.delete-btn:hover {
+  color: #ef4444;
+}

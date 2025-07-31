@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Productivity Toolkit</title>
   <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 </head>
-<body class="fade-in">
-
+<body>
   <header>
     <h1>🧠 Productivity Toolkit</h1>
     <nav>
@@ -16,21 +15,23 @@
       <a href="stopwatch.html">Stopwatch</a>
       <a href="notes.html">Notes</a>
       <a href="bmi.html">BMI Calculator</a>
-      <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+      <button class="theme-toggle" onclick="toggleTheme()">🌗</button>
     </nav>
   </header>
 
-  <main class="container">
+  <main>
     <h2>Welcome!</h2>
     <p>Stay organized, focused, and healthy with this all-in-one toolkit. Choose a feature to begin:</p>
     
-    <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 30px;">
+    <div class="tool-buttons">
       <a href="task.html"><button>✅ Task Manager</button></a>
-      <a href="stopwatch.html"><button>⏱️ Stopwatch</button></a>
+      <a href="stopwatch.html"><button>⏱ Stopwatch</button></a>
       <a href="notes.html"><button>📝 Notes</button></a>
       <a href="bmi.html"><button>💪 BMI Calculator</button></a>
     </div>
   </main>
 
+  <script src="script.js"></script>
 </body>
 </html>
+

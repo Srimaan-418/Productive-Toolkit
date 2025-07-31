@@ -377,3 +377,20 @@ body {
   animation: taskOut 0.3s ease forwards;
   overflow: hidden;
 }
+:root {
+  --bg: #f5f4ff;                /* Lavender background */
+  --text: #2e1f3f;              /* Deep plum text */
+  --card-bg: #ffffff;           /* White cards */
+  --accent: #c4a7e7;            /* Lilac accent */
+  --shadow: rgba(196, 167, 231, 0.1);      /* Light lilac shadow */
+  --shadow-hover: rgba(196, 167, 231, 0.2);
+}
+
+body.dark {
+  --bg: #181a2f;                /* Deep night lavender */
+  --text: #f5eaff;              /* Pale lilac text */
+  --card-bg: #252a41;           /* Dark card background */
+  --accent: #d4b2f0;            /* Softer lilac */
+  --shadow: rgba(0, 0, 0, 0.3);              /* Standard dark shadow */
+  --shad
+

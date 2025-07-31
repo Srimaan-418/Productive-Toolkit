@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stopwatch</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
+
+</head>
+<body>
+  <header class="header">
+    <h1>⏱️ Stopwatch</h1>
+    <nav class="nav-links">
+      <a href="index.html" class="tool-card">🏠 Home</a>
+      <a href="task.html" class="tool-card">📝 Task Manager</a>
+      <a href="bmi.html" class="tool-card">💪 BMI Calculator</a>
+    </nav>
+    <button id="themeToggle">🌓 Toggle Theme</button>
+  </header>
+
+  <main class="quote-box">
+    <h2>Timer</h2>
+    <div id="display" style="font-size: 2rem; margin-bottom: 1rem;">00:00:00</div>
+    <div class="btn-group">
+      <button id="startBtn">Start</button>
+      <button id="stopBtn">Stop</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+  </main>
+
+  <script>
+    let timer;
+    let seconds = 0;
+
+    function formatTime(sec) {
+      const hrs = String(Math.floor(sec / 3600)).padStart(2, '0');
+      const mins = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
+      const secs = String(sec % 60).padStart(2, '0');
+      return `${hrs}:${mins}:${secs}`;
+    }
+
+    function updateDisplay() {
+      document.getElementById("display").textContent = formatTime(seconds);
+    }
+
+    function startStopwatch() {
+      if (timer) return;
+      timer = setInterval(() => {
+        seconds++;
+        updateDisplay();
+      }, 1000);
+    }
+
+    function stopStopwatch() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    function resetStopwatch() {
+      stopStopwatch();
+      seconds = 0;
+      updateDisplay();
+    }
+
+    document.getElementById('startBtn').addEventListener('click', startStopwatch);
+    document.getElementById('stopBtn').addEventListener('click', stopStopwatch);
+    document.getElementById('resetBtn').addEventListener('click', resetStopwatch);
+
+    updateDisplay();
+  </script>
+</body>
+</html>

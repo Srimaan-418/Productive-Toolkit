@@ -617,3 +617,24 @@ body {
     --animated-bg-gradient: linear-gradient(-45deg, #0F0C29, #302B63, #24243E, #203A43, #0F2027); 
     /* This gradient transitions through deep blues and purples for a cool, sophisticated feel. */
 }
+/* --- CSS-GENERATED GEOMETRIC PATTERN (Bright Triangles) --- */
+
+/* Paste this block at the very end of your style.css */
+.bg-animation {
+    /* This creates a pattern of repeating triangles */
+    background-image:
+        linear-gradient(45deg, #FF69B4 25%, transparent 25%), /* Hot Pink diagonal line */
+        linear-gradient(-45deg, #FF69B4 25%, transparent 25%), /* Hot Pink diagonal line */
+        linear-gradient(45deg, transparent 75%, #A7DBF5 75%), /* Sky Blue diagonal line */
+        linear-gradient(-45deg, transparent 75%, #A7DBF5 75%); /* Sky Blue diagonal line */
+    background-size: 50px 50px; /* Adjust for larger/smaller triangles */
+    background-position: 0 0, 0 25px, 25px -25px, 25px 0px; /* Adjust positions for seamless tiling */
+    background-repeat: repeat; /* Ensure the pattern tiles */
+    background-attachment: fixed; /* Keeps the pattern fixed in the viewport */
+
+    animation: none !important; /* Disables any previous animation */
+    opacity: 1; /* Keeps the pattern fully visible */
+
+    /* A fallback solid background color, matching one of the pattern's base colors */
+    background-color: #A7DBF5; /* Bright Sky Blue as fallback */
+}

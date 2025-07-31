@@ -778,3 +778,21 @@ select option:hover { /* This might have limited effect on <option> in some brow
     color: white; // White text on highlight
 }
 */
+/* --- FIX: FEATURE PAGE BACKGROUND FOR READABILITY (Paste at the very end of your style.css) --- */
+
+/* Adjust the background of the feature page container */
+.feature-page-container {
+    /* Make it a darker, semi-transparent version of the primary background */
+    background: rgba(var(--bg-primary-rgb), 0.9); /* 90% opaque, allowing circles to subtly show through */
+    box-shadow: var(--shadow); /* Keep shadow to lift it */
+    border-radius: 20px; /* Keep consistent border-radius */
+    padding: 120px 40px 40px; /* Ensure padding is sufficient */
+}
+
+/* Ensure the inner content of feature pages is properly aligned and spaced */
+.feature-page-container .feature-header,
+.feature-page-container .widget { /* Add any other main content wrappers inside this container */
+    max-width: 800px; /* Set a max-width for content readability */
+    margin: 0 auto; /* Center the content */
+    padding: 0; /* Remove extra padding if inner elements already have it */
+}

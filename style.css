@@ -638,3 +638,33 @@ body {
     /* A fallback solid background color, matching one of the pattern's base colors */
     background-color: #A7DBF5; /* Bright Sky Blue as fallback */
 }
+/* --- CSS-GENERATED GEOMETRIC PATTERN (Animated Gradient Circles) --- */
+
+/* Paste this block at the very end of your style.css */
+.bg-animation {
+    /* This creates a repeating pattern of 4 gradient-filled circles */
+    background-image:
+        radial-gradient(circle at 10% 20%, #A7DBF5, #FF69B4), /* Circle 1: Blue to Pink */
+        radial-gradient(circle at 80% 50%, #FF69B4, #A7DBF5), /* Circle 2: Pink to Blue */
+        radial-gradient(circle at 30% 90%, #6EE7B7, #FDE68A), /* Circle 3: Green to Yellow */
+        radial-gradient(circle at 60% 10%, #FDE68A, #6EE7B7); /* Circle 4: Yellow to Green */
+
+    background-size: 200px 200px; /* Size of one tile containing the 4 circles. Adjust for bigger/smaller effect. */
+    background-repeat: repeat; /* Ensures the pattern tiles across the entire background */
+    background-attachment: fixed; /* Keeps the pattern fixed in the viewport */
+
+    /* Re-enabling and adapting the animation to move the pattern */
+    animation: animateCircles 30s linear infinite; /* New animation for smoother, slower movement */
+    opacity: 1; /* Keep fully visible */
+
+    /* Fallback solid color */
+    background-color: #1a1d24; /* A dark grey fallback */
+}
+
+/* NEW KEYFRAMES FOR CIRCLE MOVEMENT */
+/* Paste this below the .bg-animation rule if you haven't defined it before,
+   or modify an existing animation that changes background-position. */
+@keyframes animateCircles {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; } /* Moves diagonally across the background */
+}

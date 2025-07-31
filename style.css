@@ -795,4 +795,26 @@ select option:hover { /* This might have limited effect on <option> in some brow
     max-width: 800px; /* Set a max-width for content readability */
     margin: 0 auto; /* Center the content */
     padding: 0; /* Remove extra padding if inner elements already have it */
+}/* --- FIX: BACKGROUND FOR NOTES PAGE (General Override) --- */
+
+/* This targets common main content wrappers for the Notes page */
+main, /* Targets <main> tag if it's the wrapper */
+.notes-page-container, /* Common class name for a notes page wrapper */
+.task-page-container, /* If your notes and tasks use similar page containers */
+.feature-page-container /* Re-include this to make sure it's prioritized */
+{
+    /* Use the same transparent background settings as your other feature pages */
+    background: rgba(var(--bg-primary-rgb), 0.9); /* 90% opaque, for readability */
+    box-shadow: var(--shadow);
+    border-radius: 20px;
+    padding: 120px 40px 40px; /* Ensure sufficient padding */
+}
+
+/* Ensure inner content of these containers is properly aligned and spaced */
+main > *, /* Target direct children of <main> */
+.notes-page-container > *,
+.task-page-container > * {
+    max-width: 800px; /* Set a max-width for content readability */
+    margin: 0 auto; /* Center the content */
+    padding: 0; /* Remove extra padding if inner elements already have it */
 }

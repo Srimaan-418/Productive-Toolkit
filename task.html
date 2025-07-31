@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
-
 </head>
 <body>
   <header class="header">
@@ -29,7 +28,6 @@
   </main>
 
   <script>
-    // Task Manager logic
     const addTaskBtn = document.getElementById('addTaskBtn');
     const taskInput = document.getElementById('taskInput');
     const taskList = document.getElementById('taskList');
@@ -40,15 +38,16 @@
 
       const li = document.createElement('li');
       li.textContent = taskText;
-      li.classList.add('task-item');
+      li.classList.add('task-item'); // used for animation
       li.addEventListener('click', () => li.classList.toggle('completed'));
 
       const delBtn = document.createElement('button');
       delBtn.textContent = '❌';
       delBtn.classList.add('delete-btn');
       delBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // prevent toggling complete when deleting
-        li.remove();
+        e.stopPropagation();
+        li.classList.add('remove'); // trigger animation
+        setTimeout(() => li.remove(), 300); // match animation duration
       });
 
       li.appendChild(delBtn);

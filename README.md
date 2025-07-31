@@ -1,6 +1,7 @@
-# Zenith
+# Zenith Productivity Toolkit
 
-
+![Zenith Screenshot 1](assets/images/zenith_dashboard_screenshot.png)
+_A screenshot of Zenith's elegant dashboard._
 
 ## ✨ Overview
 
@@ -10,66 +11,69 @@ Zenith is a modern and visually engaging productivity toolkit designed to help y
 
 * **Task Management:** Organize your to-dos, set priorities, and keep track of your progress.
 * **Notes:** A dedicated space for capturing ideas, thoughts, and important information.
-* **Pomodoro Timer:** (If implemented) Enhance focus with timed work intervals.
-* **BMI Calculator:** (If implemented) A handy tool for health tracking.
-* **Stopwatch:** (If implemented) Measure your work or activity times.
-* **Sleep Logger:** (If implemented) Track your sleep patterns for better rest.
-* **Dynamic Theming:** Seamlessly switch between a captivating dark mode and a serene light mode.
-* **Animated Backgrounds:** Features a unique, animated background with moving gradient circles that subtly enhances the user experience without distraction.
-* **Customizable Aesthetics:** Highly customizable through CSS, allowing users to tailor the look and feel to their preference.
+* **Pomodoro Timer:** Enhance focus with timed work intervals.
+* **BMI Calculator:** A handy tool for health tracking.
+* **Stopwatch:** Measure your work or activity times.
+* **Sleep Logger:** Track your sleep patterns for better rest.
+* **Dynamic Theming:** Seamlessly switch between a captivating dark mode and a serene light mode, with adaptive color palettes for all elements.
+* **Animated Backgrounds:** Features a unique, dynamic background with 8 distinct, gradient-filled circles that subtly move across the viewport, visible through translucent content blocks. This creates a vibrant, yet non-distracting, ambiance.
+* **Customizable Aesthetics:** Highly customizable through CSS variables, allowing users and developers to easily tailor the look and feel to their preference without digging deep into the code.
 
 ## 🎨 Design & Customization Highlights
 
 Zenith's design focuses on modern aesthetics and user comfort. A significant part of its appeal lies in its dynamic and customizable styling:
 
-* **Global Font:** Utilizes the clean and "cozy" **Quicksand** font throughout the application for consistent readability.
-* **Themed Palette:** Features a harmonious color palette that adapts beautifully between dark and light modes, with a focus on neutral text colors and cool-toned accents.
-* **Interactive Elements:** Subtle hover animations and transitions on buttons, cards, and theme toggles for a responsive feel.
-* **Unique Animated Background:** The background features 8 distinct, gradient-filled circles that subtly move across the viewport, visible through translucent content blocks. This creates a vibrant, yet non-distracting, ambiance.
-* **Easily Modifiable CSS:** All major design elements are controlled via CSS variables in the `:root` and `[data-theme="light"]` selectors, making it incredibly easy for developers to:
+* **Global Font:** Utilizes the clean and "cozy" **Quicksand** font throughout the application for consistent readability and a friendly feel.
+* **Themed Palette:** Features a harmonious color palette that adapts beautifully between dark and light modes, with distinct neutral text colors and cool-toned accents. The navigation bar, content blocks, and elements like dropdowns are all consistently styled across themes.
+* **Interactive Elements:** Subtle hover animations and transitions on buttons, cards, and theme toggles for a responsive and engaging user experience.
+* **Unique Animated Background:** The background features 8 distinct, gradient-filled circles that subtly move across the viewport. These circles are non-repeating and are visible through translucent content blocks, creating a vibrant, yet non-distracting, ambiance.
+* **Easily Modifiable CSS:** All major design elements are controlled via well-organized CSS variables in the `:root` and `[data-theme="light"]` selectors, making it incredibly easy for developers to:
     * Change primary, secondary, and accent colors.
-    * Adjust background opacity for content blocks.
-    * Modify the animated background's colors, number of circles, sizes, and animation speed.
-    * Customize text shadows and borders.
+    * Adjust background opacity for content blocks and elements.
+    * Modify the animated background's colors, number of circles, sizes, positions, and animation speed.
+    * Customize text shadows, borders, and overall typography.
 
 ## 🛠️ Technologies Used
 
-[YOUR TECH STACK HERE]
+* **HTML5:** For the semantic structure and content of the web pages.
+* **CSS3:** Extensively used for all styling, dynamic theming, complex animations, responsive design, and custom properties (CSS variables).
+* **JavaScript (Optional/Placeholder):** For interactive functionalities such as theme switching, real-time clock display, and the logic behind productivity tools like Pomodoro, BMI calculator, task management, etc. (Assumes typical front-end interactivity).
+* **Google Fonts:** Utilized for importing custom typography ('Quicksand', 'Nunito Sans', 'Montserrat').
 
 ## 🚀 Getting Started
 
-To get a local copy up and running, follow these simple steps.
+To get a local copy of Zenith up and running, follow these simple steps.
 
 ### Prerequisites
 
-* A web browser (e.g., Chrome, Firefox)
-* A text editor (e.g., VS Code)
+* A modern web browser (e.g., Google Chrome, Mozilla Firefox, Microsoft Edge, Safari)
+* A code editor (e.g., Visual Studio Code, Sublime Text, Atom)
 
 ### Installation
 
-1.  **Clone the repo:**
+1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/Srimaan-418/Productive-Toolkit.git
+    git clone [https://github.com/your-username/zenith-productivity-toolkit.git](https://github.com/your-username/zenith-productivity-toolkit.git)
     ```
 2.  **Navigate to the project directory:**
     ```bash
     cd zenith-productivity-toolkit
     ```
-3.  **Open `index.html`:** Simply open the `index.html` file in your preferred web browser.
+3.  **Open `index.html`:** Simply open the `index.html` file in your preferred web browser to launch the application.
 
 ## 💡 Usage
 
-(Describe how a user would interact with your application)
+Once opened in your browser, Zenith is straightforward to use:
 
-* **Theme Toggle:** Click the moon/sun icon in the navigation bar to switch between dark and light modes.
-* **Navigate Features:** Click on "Tasks", "Notes", etc., (if they are linked) to explore different productivity tools.
-* **Add Notes/Tasks:** (If implemented) Use the input fields and buttons to create new items.
+* **Theme Toggle:** Click the moon/sun icon in the top-right corner of the navigation bar to instantly switch between the dark and light themes.
+* **Navigate Features:** Click on the "Tasks", "Notes", "Pomodoro", "BMI Calculator", "Stopwatch", and "Sleep Logger" tiles on the dashboard to access specific productivity tools.
+* **Interact with Tools:** Use the input fields, buttons, and dropdowns (e.g., in the Task List or BMI Calculator) to manage your data and utilize the tools.
 
 ## 🤝 Contributing
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+If you have a suggestion that would make Zenith better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 
 1.  Fork the Project
 2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -79,9 +83,8 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 ## 📄 License
 
-Distributed under the MIT License. See `LICENSE` for more information. (You might need to create a LICENSE file if you don't have one).
+Distributed under the MIT License. See the `LICENSE` file in the repository root for more details.
 
 ## 🙏 Acknowledgements
 
-* (Any specific tutorials, resources, or individuals you'd like to thank)
-* Google Fonts
+* Google Fonts for providing the beautiful typography used in Zenith.

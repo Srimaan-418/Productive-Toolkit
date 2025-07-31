@@ -818,3 +818,29 @@ main > *, /* Target direct children of <main> */
     margin: 0 auto; /* Center the content */
     padding: 0; /* Remove extra padding if inner elements already have it */
 }
+/* --- FIX: CONTENT BLOCK OPACITY FOR BOTH DARK AND LIGHT THEMES (Paste at the very end of your style.css) --- */
+
+/* Adjusting opacity for dark theme content backgrounds to be semi-transparent */
+:root {
+    /* Set opacity levels to be semi-transparent, allowing background circles to show through */
+    --homepage-bg-opacity: 0.75; /* Main content areas (homepage, dashboard, feature pages) */
+    --surface-element-bg-opacity: 0.65; /* Secondary elements (continue-section, widgets, secondary buttons) */
+    --card-bg-opacity: 0.75; /* Feature cards (tiles) */
+
+    /* Update the card gradient in the dark theme to use the new semi-transparent card opacity */
+    --card-gradient: linear-gradient(135deg, rgba(58, 51, 49, var(--card-bg-opacity)), rgba(47, 42, 40, var(--card-bg-opacity)));
+}
+
+/* Adjusting opacity for light theme content backgrounds to be semi-transparent */
+[data-theme="light"] {
+    /* Set opacity levels to be semi-transparent, allowing background circles to show through */
+    --homepage-bg-opacity: 0.75; /* Main content areas (homepage, dashboard, feature pages) */
+    --surface-element-bg-opacity: 0.65; /* Secondary elements (continue-section, widgets, secondary buttons) */
+    --card-bg-opacity: 0.75; /* Feature cards (tiles) */
+
+    /* Update the card gradient in the light theme to use the new semi-transparent card opacity */
+    --card-gradient: linear-gradient(135deg, rgba(247, 240, 235, var(--card-bg-opacity)), rgba(255, 224, 194, var(--card-bg-opacity)));
+}
+
+/* These selectors already exist in your main CSS and will automatically pick up the updated variables */
+/* No need to paste the individual selectors like .homepage, .dashboard, etc. again if they are already defined earlier in your CSS */

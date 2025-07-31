@@ -1,0 +1,151 @@
+/* Styles specific to the BMI Calculator page */
+.feature-page-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 120px 20px 40px;
+}
+
+.feature-header {
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+}
+
+.feature-header h1 {
+    font-size: clamp(2.5rem, 5vw, 3rem);
+}
+
+.feature-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-top: 8px;
+}
+
+.widget {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+}
+
+.bmi-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-family: inherit;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.bmi-form button {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 60%;
+    padding: 14px;
+    font-size: 1.1rem;
+}
+
+.result-container {
+    text-align: center;
+    padding: 24px;
+    border-radius: 12px;
+    background: var(--bg-secondary);
+}
+
+.result-container p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.bmi-score {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.bmi-category {
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+/* Category-specific colors */
+.category-underweight { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+.category-normal { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+.category-overweight { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+.category-obese { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+
+@media (max-width: 600px) {
+    .bmi-form {
+        grid-template-columns: 1fr;
+    }
+}
+/* Add these new styles to bmi.css */
+.unit-toggle {
+    grid-column: 1 / -1; /* Make it span both columns */
+    display: flex;
+    justify-content: center;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.unit-toggle input[type="radio"] {
+    display: none;
+}
+
+.unit-toggle label {
+    flex: 1;
+    text-align: center;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    color: var(--text-secondary);
+}
+
+.unit-toggle input[type="radio"]:checked + label {
+    background-color: var(--accent);
+    color: #fff;
+    font-weight: 600;
+}
+
+
+/* Adjust the BMI form to accommodate the toggle */
+.bmi-form {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    row-gap: 24px; /* Add some row gap */
+    margin-bottom: 32px;
+}

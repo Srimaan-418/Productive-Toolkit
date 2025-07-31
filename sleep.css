@@ -1,0 +1,154 @@
+/* Styles specific to the sleep logger page */
+
+.feature-page-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 120px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.feature-header {
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+    margin-bottom: 16px;
+}
+
+.feature-header h1 {
+    font-size: clamp(2.5rem, 5vw, 3rem);
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.feature-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-top: 8px;
+}
+
+.widget {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 32px;
+}
+
+.widget-header {
+    margin-bottom: 24px;
+}
+
+.widget-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.sleep-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.notes-group {
+    grid-column: 1 / -1;
+}
+
+.sleep-form button {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 50%;
+    min-width: 200px;
+}
+
+.log-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.log-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.log-item:hover {
+    border-color: var(--accent);
+    transform: translateX(4px);
+}
+
+.log-details {
+    flex-grow: 1;
+}
+
+.log-details strong {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.log-details p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 4px;
+    max-width: 95%;
+}
+
+.log-duration {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-left: 20px;
+}
+
+.empty-state {
+    color: var(--text-muted);
+    text-align: center;
+    padding: 20px;
+}
+
+@media (max-width: 600px) {
+    .sleep-form {
+        grid-template-columns: 1fr;
+    }
+    .sleep-form button {
+        width: 100%;
+    }
+}

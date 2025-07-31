@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Logger - Zenith</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="sleep.css" />
+</head>
+<body data-theme="dark">
+<div class="bg-animation"></div>
+
+<nav class="nav">
+    <div class="nav-container">
+        <a href="index.html" style="text-decoration: none;">
+<a href="index.html" style="text-decoration: none;">
+    <div class="logo">Zenith</div>
+</a>
+        </a>
+        <div class="nav-controls">
+            <a href="index.html" class="btn btn-secondary" style="padding: 8px 16px;">← Dashboard</a>
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+        </div>
+    </div>
+</nav>
+
+<div class="feature-page-container">
+    <header class="feature-header">
+        <h1>😴 Sleep Logger</h1>
+        <p>Track your sleep patterns to improve your rest and well-being.</p>
+    </header>
+
+    <div class="widget">
+        <div class="widget-header">
+            <h2 class="widget-title">Log New Sleep Session</h2>
+        </div>
+        <form id="sleepForm" class="sleep-form">
+            <div class="input-group">
+                <label for="sleepDate">Date</label>
+                <input type="date" id="sleepDate" required>
+            </div>
+            <div class="input-group">
+                <label for="bedTime">Bed Time</label>
+                <input type="time" id="bedTime" required>
+            </div>
+            <div class="input-group">
+                <label for="wakeTime">Wake Up Time</label>
+                <input type="time" id="wakeTime" required>
+            </div>
+            <div class="input-group notes-group">
+                <label for="sleepNotes">Notes (e.g., quality, dreams)</label>
+                <textarea id="sleepNotes" rows="3" placeholder="How was your sleep?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Log Sleep</button>
+        </form>
+    </div>
+
+    <div class="widget">
+        <div class="widget-header">
+            <h2 class="widget-title">Sleep History</h2>
+        </div>
+        <div id="logList" class="log-list">
+            </div>
+    </div>
+</div>
+
+<script src="sleep.js"></script>
+<script src="nav.js"></script>
+<script>
+    function toggleTheme() {
+        const body = document.body;
+        const currentTheme = body.getAttribute("data-theme") || "dark";
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        body.setAttribute("data-theme", newTheme);
+        document.getElementById("themeToggle").textContent = newTheme === "dark" ? "🌙" : "☀️";
+        localStorage.setItem('zenith-theme', newTheme);
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('zenith-theme') || 'dark';
+        document.body.setAttribute('data-theme', savedTheme);
+        document.getElementById("themeToggle").textContent = savedTheme === "dark" ? "🌙" : "☀️";
+    });
+</script>
+</body>
+</html>

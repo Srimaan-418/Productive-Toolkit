@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes - Zenith</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="notes.css" />
+</head>
+<body data-theme="dark">
+<div class="bg-animation"></div>
+
+<nav class="nav">
+    <div class="nav-container">
+        <a href="index.html" style="text-decoration: none;"><a href="index.html" style="text-decoration: none;">
+    <div class="logo">Zenith</div>
+</a>
+        <div class="nav-controls">
+            <a href="index.html" class="btn btn-secondary" style="padding: 8px 16px;">← Dashboard</a>
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+        </div>
+    </div>
+</nav>
+
+<div class="notes-container">
+    <div class="notes-sidebar">
+        <button id="newNoteBtn" class="btn btn-primary">＋ New Note</button>
+        <div id="notesList" class="notes-list">
+            </div>
+    </div>
+    <div class="notes-editor-container">
+        <div id="editor" class="notes-editor" style="display: none;">
+            <input type="text" id="noteTitle" placeholder="Your Note Title">
+            <textarea id="noteBody" placeholder="Start writing..."></textarea>
+            <div class="editor-actions">
+                <button id="deleteNoteBtn" class="btn btn-secondary">Delete Note</button>
+            </div>
+        </div>
+        <div id="welcomeMessage" class="welcome-message">
+            <h2>Select a note to view or create a new one.</h2>
+        </div>
+    </div>
+</div>
+
+<script src="notes.js"></script>
+<script src="nav.js"></script>
+<script>
+    function toggleTheme() {
+        const body = document.body;
+        const currentTheme = body.getAttribute("data-theme") || "dark";
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        body.setAttribute("data-theme", newTheme);
+        document.getElementById("themeToggle").textContent = newTheme === "dark" ? "🌙" : "☀️";
+        localStorage.setItem('zenith-theme', newTheme);
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('zenith-theme') || 'dark';
+        document.body.setAttribute('data-theme', savedTheme);
+        document.getElementById("themeToggle").textContent = savedTheme === "dark" ? "🌙" : "☀️";
+    });
+</script>
+</body>
+</html>

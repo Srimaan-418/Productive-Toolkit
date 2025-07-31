@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer - Zenith</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="pomodoro.css" />
+</head>
+<body data-theme="dark">
+<div class="bg-animation"></div>
+
+<nav class="nav">
+    <div class="nav-container">
+        <a href="index.html" style="text-decoration: none;">
+            <div class="logo">Zenith</div>
+        </a>
+        <div class="nav-controls">
+            <a href="index.html" class="btn btn-secondary" style="padding: 8px 16px;">← Dashboard</a>
+            <div class="time-display" id="currentTime"></div>
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+        </div>
+    </div>
+</nav>
+
+<div class="feature-page-container">
+    <header class="feature-header">
+        <h1>⏱️ Pomodoro Timer</h1>
+        <p>Stay focused and manage your time effectively.</p>
+    </header>
+
+    <div class="timer-widget">
+        <div class="timer-container">
+            <div id="progressCircle" class="progress-circle"></div>
+            <div id="timeDisplay" class="time-display">25:00</div>
+        </div>
+
+        <div id="modeButtons" class="mode-buttons">
+            <button class="mode-btn active" data-mode="work">Focus</button>
+            <button class="mode-btn" data-mode="shortBreak">Short Break</button>
+            <button class="mode-btn" data-mode="longBreak">Long Break</button>
+        </div>
+
+        <div id="controls" class="controls">
+            <button id="startBtn" class="control-btn">Start</button>
+            <button id="pauseBtn" class="control-btn" style="display: none;">Pause</button>
+            <button id="resetBtn" class="control-btn">Reset</button>
+        </div>
+        
+        <div class="session-info">
+            <p>Sessions Completed: <span id="sessionCount">0</span></p>
+        </div>
+    </div>
+
+    <div class="settings-panel widget">
+        <h2 class="widget-title">Settings</h2>
+        <div class="settings-grid">
+            <div class="input-group">
+                <label for="workTime">Focus (minutes)</label>
+                <input type="number" id="workTime" min="1" value="25">
+            </div>
+            <div class="input-group">
+                <label for="shortBreakTime">Short Break (minutes)</label>
+                <input type="number" id="shortBreakTime" min="1" value="5">
+            </div>
+            <div class="input-group">
+                <label for="longBreakTime">Long Break (minutes)</label>
+                <input type="number" id="longBreakTime" min="1" value="15">
+            </div>
+        </div>
+        <button id="saveSettingsBtn" class="btn btn-primary">Save Settings</button>
+        <p id="settings-saved-msg" class="saved-message">Settings Saved!</p>
+    </div>
+</div>
+
+<audio id="alertSound" src="alert.mp3" preload="auto"></audio>
+
+<script src="pomodoro.js"></script>
+<script src="nav.js"></script>
+</body>
+</html>

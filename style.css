@@ -1,0 +1,619 @@
+/* ======================================================= */
+/* ===      FINAL STYLE.CSS WITH THEME-AWARE GRADIENT  === */
+/* ===      AND CLEANER TEXT IN LIGHT MODE             === */
+/* ======================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap'); /* You can keep this if you still use Montserrat anywhere, otherwise you can remove it to optimize */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap'); /* Add this line */
+
+/* ... rest of your CSS starts here (e.g., * { margin: 0; ... }) ... */
+
+/* ... rest of your CSS starts here (e.g., * { margin: 0; ... }) ... */
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- COLOR PALETTES & FONT --- */
+
+/* Dark Theme: "Warm Dusk" */
+:root {
+    --bg-primary-rgb: 28, 25, 23;
+    --bg-secondary-rgb: 41, 37, 36;
+    --surface-rgb: 245, 233, 226;
+
+    --accent: #ff7e5f;
+    --accent-secondary: #feb47b;
+    --text-primary: #f5e9e2;
+    --text-secondary: #c7b8b0;
+    --text-muted: #8f8078;
+
+    --border: rgba(245, 233, 226, 0.2);
+    --nav-bg: rgba(41, 37, 36, 0.9);
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+
+    --card-gradient: linear-gradient(135deg, rgba(58, 51, 49, 0.9), rgba(47, 42, 40, 0.9));
+
+    /* Dynamic animated background gradient for Dark Theme */
+    --animated-bg-gradient: linear-gradient(-45deg, #FF6B6B, #FFD166, #06D6A0, #118AB2, #073B4C);
+    --text-shadow-color: rgba(0, 0, 0, 0.8); /* Dark shadow for dark theme */
+}
+
+/* Light Theme: "Daybreak" */
+[data-theme="light"] {
+    --bg-primary-rgb: 255, 248, 245;
+    --bg-secondary-rgb: 255, 255, 255;
+    --surface-rgb: 77, 64, 58;
+
+    --accent: #f96d54;
+    --accent-secondary: #ffae96;
+    --text-primary: #4d403a;
+    --text-secondary: #7a6a62;
+    --text-muted: #9e8a80;
+
+    --border: rgba(77, 64, 58, 0.15);
+    --nav-bg: rgba(255, 248, 245, 0.9);
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+    --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+
+    --card-gradient: linear-gradient(135deg, rgba(247, 240, 235, 0.9), rgba(255, 224, 194, 0.9));
+
+    /* Dynamic animated background gradient for Light Theme (NOT WHITE, but light & vibrant) */
+    --animated-bg-gradient: linear-gradient(-45deg, #8ecae6, #219ebc, #c1e7e4, #ffb703, #fb8500); /* Blues, greens, oranges */
+    --text-shadow-color: rgba(77, 64, 58, 0.3); /* Lighter, subtle shadow for light theme */
+}
+
+/* Base Body Styles */
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    background: none;
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* --- ANIMATED GRADIENT BACKGROUND (FULL PAGE - VISIBLE AF) --- */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* NOW USES THEME-DEFINED GRADIENT */
+    background: var(--animated-bg-gradient);
+    background-size: 400% 400%;
+    animation: animateGradient 20s ease infinite;
+    opacity: 1; /* Still fully visible! */
+}
+
+/* Keyframes for the background animation */
+@keyframes animateGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Keyframes for a general fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+/* --- NAVIGATION --- */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 20px 0;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    background: var(--nav-bg);
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.time-display {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.theme-toggle {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(var(--surface-rgb), 0.2);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.theme-toggle:hover {
+    background: rgba(var(--surface-rgb), 0.3);
+    transform: scale(1.05);
+}
+
+/* --- HOMEPAGE & SHARED COMPONENTS --- */
+.homepage {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 40px 40px;
+    position: relative;
+    z-index: 1;
+    background: rgba(var(--bg-primary-rgb), 0.85);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.hero {
+    text-align: center;
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 6vw, 6rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* Dynamic text shadow color */
+    text-shadow: 2px 2px 6px var(--text-shadow-color);
+}
+
+.hero p {
+    font-size: 20px;
+    color: var(--text-secondary);
+    margin-bottom: 48px;
+    line-height: 1.6;
+    text-shadow: 1px 1px 3px var(--text-shadow-color);
+}
+
+.hero-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 16px 32px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: var(--gradient-accent);
+    color: white;
+    box-shadow: var(--shadow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    background: rgba(var(--surface-rgb), 0.2);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background: rgba(var(--surface-rgb), 0.3);
+    transform: translateY(-2px);
+}
+
+.continue-section {
+    margin-top: 80px;
+    padding: 40px;
+    background: rgba(var(--surface-rgb), 0.15);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+    box-shadow: var(--shadow);
+}
+
+.continue-section h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.continue-section p {
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.quick-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 4px;
+    text-shadow: 1px 1px 3px var(--text-shadow-color);
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px var(--text-shadow-color);
+}
+
+/* --- DASHBOARD --- */
+.dashboard {
+    min-height: 100vh;
+    padding: 140px 40px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    background: rgba(var(--bg-primary-rgb), 0.85);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.dashboard.active {
+    display: block;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.dashboard-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px var(--text-shadow-color);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    justify-content: center;
+}
+
+.feature-card {
+    background: var(--card-gradient);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    z-index: 2;
+    box-shadow: var(--shadow);
+}
+
+.feature-card:hover {
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    transform: translateY(-5px);
+    border-color: var(--accent);
+}
+
+.feature-card a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1.2rem;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-shadow: 1px 1px 2px var(--text-shadow-color);
+}
+
+.feature-card a:hover {
+    color: white;
+}
+
+/* --- GENERAL WIDGET & PAGE STYLING --- */
+.widget {
+    padding: 24px 32px;
+    background: rgba(var(--surface-rgb), 0.15);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    position: relative;
+    z-index: 1;
+    box-shadow: var(--shadow);
+}
+
+.widget-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+    text-shadow: 1px 1px 2px var(--text-shadow-color);
+}
+
+.feature-page-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 120px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    position: relative;
+    z-index: 1;
+    background: rgba(var(--bg-primary-rgb), 0.85);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.feature-header {
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+    margin-bottom: 16px;
+}
+
+.feature-header h1 {
+    font-size: clamp(2.5rem, 5vw, 3rem);
+    text-shadow: 2px 2px 4px var(--text-shadow-color);
+}
+
+.feature-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    text-shadow: 1px 1px 2px var(--text-shadow-color);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 20px;
+    }
+    .homepage {
+        padding: 120px 20px 40px;
+    }
+    .hero h1 {
+        font-size: 3rem;
+    }
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}/* --- OVERRIDE FOR DARK THEME CONTENT BACKGROUND COLOR (Paste at the very end of your style.css) --- */
+
+/* This block changes the main content area background color for the dark theme */
+body[data-theme="dark"] .homepage,
+body[data-theme="dark"] .dashboard,
+body[data-theme="dark"] .feature-page-container {
+    /* New background color: A very dark, desaturated slate blue (85% opaque) */
+    background: rgba(32, 42, 58, 0.85); 
+}
+
+/* If you also want to change the background color of smaller sections 
+   like 'continue-section' and 'widget' in the dark theme, uncomment 
+   and adjust the following block: */
+/*
+body[data-theme="dark"] .continue-section,
+body[data-theme="dark"] .widget {
+    background: rgba(32, 42, 58, 0.2); 
+    border-color: rgba(255, 255, 255, 0.2);
+}
+*/
+/* --- OVERRIDE FOR DARK THEME TEXT COLORS TO ORANGE (Paste at the very end of your style.css) --- */
+
+/* This block changes the primary, secondary, and muted text colors for the dark theme to shades of orange. */
+:root { /* This targets the default/dark theme variables */
+    --text-primary: #FF8C00;    /* Dark Orange for main text (e.g., body text, feature titles) */
+    --text-secondary: #FFB366;  /* Softer orange for secondary text (e.g., descriptions) */
+    --text-muted: #FFCC99;      /* Lighter peach-orange for muted text (e.g., small labels) */
+
+    /* IMPORTANT NOTE ON READABILITY:
+       Using vibrant colors for large blocks of text can sometimes impact readability,
+       especially with an animated background. You might need to adjust the opacity
+       of your content blocks (e.g., in .homepage, .dashboard) or the intensity
+       of text shadows further to ensure good contrast. */
+
+    /* Optional: Your logo and hero title already use an orange gradient from --gradient-accent.
+       If you want to adjust *those specific* orange shades, uncomment and modify these: */
+    /*
+    --accent: #FF6F00;           // A more intense orange for accent
+    --accent-secondary: #FFA726; // A brighter orange for accent secondary
+    --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+    */
+}/* --- OVERRIDE FOR SOLID ORANGE TEXT IN DARK THEME (Paste at the very end of your style.css) --- */
+
+/* This targets the main hero title ("Welcome to Zenith") in the dark theme */
+body[data-theme="dark"] .hero h1 {
+    color: #FF8C00; /* Sets the text to a solid Dark Orange */
+    background: none; /* Removes the background gradient */
+    -webkit-background-clip: unset; /* Resets background clip for WebKit browsers */
+    -webkit-text-fill-color: initial; /* Allows text to be filled with the color property */
+    background-clip: unset; /* Resets background clip for standard browsers */
+}
+
+/* You might also want to apply a similar change to the logo if it's currently a gradient and you want it solid */
+/* Uncomment and adjust if needed:
+body[data-theme="dark"] .logo {
+    color: #FF8C00; 
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: initial;
+    background-clip: unset;
+}
+*//* --- OVERRIDE FOR DARK THEME HERO H1 TEXT COLOR (Less Bright Orange) --- */
+
+/* This targets the main hero title ("Welcome to Zenith") in the dark theme */
+body[data-theme="dark"] .hero h1 {
+    color: #E67E22; /* A darker, less bright orange */
+    /* Ensure no background/gradient properties are overriding this if you previously added them for this specific text */
+    background: none; /* Make sure any background gradient is removed for this solid color */
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: initial;
+    background-clip: unset;
+}
+/* --- OVERRIDE FOR HERO H1 FONT STYLE (Paste at the very end of your style.css) --- */
+
+/* This targets the main hero title ("Welcome to Zenith") in both dark and light themes */
+/* --- OVERRIDE FOR HERO H1 FONT STYLE (Cozy Quicksand) --- */
+
+/* This targets the main hero title ("Welcome to Zenith") in both dark and light themes */
+.hero h1 {
+    font-family: 'Quicksand', sans-serif; /* Apply the new cozy font */
+    font-weight: 700; /* A good bold weight for impact without being too heavy */
+}
+/* --- OVERRIDE FOR NAVIGATION BAR LOGO FONT STYLE (Cozy Quicksand) --- */
+
+/* This targets the logo text in the navigation bar */
+.nav .logo {
+    font-family: 'Quicksand', sans-serif; /* Apply the cozy font */
+    font-weight: 700; /* A good bold weight for clarity in the nav bar */
+}
+/* --- OVERRIDE FOR GLOBAL FONT STYLE (Quicksand for everything) --- */
+
+/* Apply Quicksand to the entire body */
+body {
+    font-family: 'Quicksand', sans-serif; 
+}
+
+/* Cleanup: Remove redundant font-family declarations from specific elements
+   as they will now inherit from the body. You can keep font-weight. */
+.hero h1 {
+    /* REMOVE THIS LINE IF PRESENT: font-family: 'Quicksand', sans-serif; */
+    font-weight: 700; /* Keep this if you want it specifically bold */
+}
+
+.nav .logo {
+    /* REMOVE THIS LINE IF PRESENT: font-family: 'Quicksand', sans-serif; */
+    font-weight: 700; /* Keep this if you want it specifically bold */
+}
+/* --- GLOBAL TEXT COLOR OVERRIDE TO ROSE RED (Paste at the very end of your style.css) --- */
+
+/* Adjusting Text Colors for the Dark Theme */
+:root {
+    --text-primary: #E52B55;    /* Slightly brighter rose red for main text */
+    --text-secondary: #FF8F9B;  /* Lighter rose red for secondary text */
+    --text-muted: #FFB3BB;      /* Muted rose red for subtle text */
+
+    /* Adjusting accent colors to be rose red for items like buttons/titles that use them */
+    --accent: #E52B50;           /* Main Rose Red */
+    --accent-secondary: #FF6680; /* Brighter Rose Red for gradient ends */
+    --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+}
+
+/* Adjusting Text Colors for the Light Theme */
+[data-theme="light"] {
+    --text-primary: #9B0032;    /* Darker rose red for main text on light background */
+    --text-secondary: #C23A63;  /* Medium rose red for secondary text */
+    --text-muted: #E06C92;      /* Lighter rose red for subtle text */
+
+    /* Adjusting accent colors to be rose red */
+    --accent: #E52B50;           /* Main Rose Red */
+    --accent-secondary: #FF6680; /* Brighter Rose Red for gradient ends */
+    --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+}
+
+
+/* Specific Overrides for elements that previously had special text effects (like gradients)
+   or fixed colors, to ensure they also become solid Rose Red. */
+
+/* Hero Heading (e.g., "Welcome to Zenith") */
+.hero h1 {
+    color: #E52B50 !important; /* Force solid Rose Red */
+    background: none !important; /* Remove any lingering background gradient */
+    -webkit-background-clip: unset !important; /* Reset WebKit specific background clipping */
+    -webkit-text-fill-color: initial !important; /* Allow text to be filled by color property */
+    background-clip: unset !important; /* Reset standard background clipping */
+}
+
+/* Navigation Bar Logo */
+.nav .logo {
+    color: #E52B50 !important; /* Force solid Rose Red */
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: initial !important;
+    background-clip: unset !important;
+}
+
+/* Secondary Buttons - Change their text to Rose Red */
+.btn-secondary {
+    color: #E52B50 !important;
+}
+
+/* Stat Numbers - Change their text to Rose Red */
+.stat-number {
+    color: #E52B50 !important;
+}
+
+/* Primary Buttons - Keep their text white for contrast against the rose button background */
+.btn-primary {
+    color: white !important; 
+}
+/* --- OVERRIDE FOR DARK MODE ANIMATED BACKGROUND GRADIENT (Cool Tones) --- */
+
+/* This block changes the full-page animated background gradient to cooler, deeper tones in dark mode. */
+:root { /* This targets the default/dark theme variables */
+    --animated-bg-gradient: linear-gradient(-45deg, #0F0C29, #302B63, #24243E, #203A43, #0F2027); 
+    /* This gradient transitions through deep blues and purples for a cool, sophisticated feel. */
+}

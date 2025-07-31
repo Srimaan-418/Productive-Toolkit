@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch - Zenith</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="stopwatch.css" />
+</head>
+<body data-theme="dark">
+<div class="bg-animation"></div>
+
+<nav class="nav">
+    <div class="nav-container">
+        <a href="index.html" style="text-decoration: none;"><a href="index.html" style="text-decoration: none;">
+    <div class="logo">Zenith</div>
+</a>
+        <div class="nav-controls">
+            <a href="index.html" class="btn btn-secondary" style="padding: 8px 16px;">← Dashboard</a>
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+        </div>
+    </div>
+</nav>
+
+<div class="feature-page-container">
+    <header class="feature-header">
+        <h1>🕒 Stopwatch</h1>
+        <p>Measure elapsed time with precision.</p>
+    </header>
+
+    <div class="stopwatch-widget">
+        <div class="time-display-container">
+            <span id="timeDisplay">00:00:00.00</span>
+        </div>
+        
+        <div class="controls">
+            <button id="startBtn" class="control-btn start-btn">Start</button>
+            <button id="stopBtn" class="control-btn stop-btn" style="display: none;">Stop</button>
+            <button id="lapBtn" class="control-btn lap-btn" disabled>Lap</button>
+            <button id="resetBtn" class="control-btn reset-btn" disabled>Reset</button>
+        </div>
+
+        <div id="lapsContainer" class="laps-container">
+            <ul id="lapsList">
+                </ul>
+        </div>
+    </div>
+</div>
+
+<script src="stopwatch.js"></script>
+<script src="nav.js"></script>
+<script>
+    function toggleTheme() {
+        const body = document.body;
+        const currentTheme = body.getAttribute("data-theme") || "dark";
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        body.setAttribute("data-theme", newTheme);
+        document.getElementById("themeToggle").textContent = newTheme === "dark" ? "🌙" : "☀️";
+        localStorage.setItem('zenith-theme', newTheme);
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('zenith-theme') || 'dark';
+        document.body.setAttribute('data-theme', savedTheme);
+        document.getElementById("themeToggle").textContent = savedTheme === "dark" ? "🌙" : "☀️";
+    });
+</script>
+</body>
+</html>

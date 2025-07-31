@@ -1,0 +1,122 @@
+/* Styles specific to the Notes page */
+.notes-container {
+    display: flex;
+    height: calc(100vh - 75px); /* Full height minus nav */
+    margin-top: 75px; /* Same height as nav */
+}
+
+.notes-sidebar {
+    width: 300px;
+    background-color: var(--bg-secondary);
+    border-right: 1px solid var(--border);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#newNoteBtn {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.notes-list {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.note-item {
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    border-bottom: 1px solid var(--border);
+    transition: background-color 0.2s;
+}
+
+.note-item:hover {
+    background-color: var(--surface);
+}
+
+.note-item.active {
+    background-color: var(--accent);
+    color: #fff;
+}
+
+.note-item h3 {
+    margin: 0 0 5px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.note-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.note-item.active p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.notes-editor-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.notes-editor {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.notes-editor input,
+.notes-editor textarea {
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    font-family: inherit;
+}
+
+.notes-editor input:focus,
+.notes-editor textarea:focus {
+    outline: none;
+}
+
+#noteTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 20px 30px;
+    border-bottom: 1px solid var(--border);
+}
+
+#noteBody {
+    flex-grow: 1;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    padding: 20px 30px;
+    resize: none;
+}
+
+.editor-actions {
+    padding: 10px 30px;
+    text-align: right;
+}
+
+.editor-actions button {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.welcome-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-muted);
+    text-align: center;
+}

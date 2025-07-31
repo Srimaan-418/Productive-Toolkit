@@ -443,3 +443,37 @@ body.dark {
 .secondary-btn:hover {
   background-color: var(--shadow-hover);
 }
+/* Quote box spacing */
+.quote-box {
+  margin: 3rem auto 4rem; /* More top and bottom spacing */
+  padding: 2rem;
+  max-width: 600px;
+}
+
+/* Section spacing */
+.main-content {
+  margin-top: 3rem;
+  padding: 0 1rem;
+}
+
+.section-title {
+  margin-bottom: 1.5rem;
+}
+
+/* Card grid spacing */
+.card-grid {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  padding: 0 1rem;
+  margin-bottom: 3rem;
+}
+
+/* Footer spacing */
+.footer {
+  margin-top: 2rem;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text);
+}
